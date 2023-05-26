@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Tile from "./components/Tile";
+import VolumeBar from "./components/VolumeBar";
 
 const App = () => {
+  const [isRecording, setIsRecording] = useState(false);
+  const [displayText, setDisplayText] = useState("Rock On!!");
   const [pressed, setPressed] = useState("enabled");
+  const [power, setPower] = useState("");
+  const [mode, setMode] = useState("");
   const [charKey, setCharKey] = useState("");
+  const [volume, setVolume] = useState(100);
+  const [session, setSession] = useState([]);
 
   useEffect(() => {
     const heaterOne = document.querySelector("#heater-1");
@@ -99,7 +106,50 @@ const App = () => {
         color: "c",
       },
     ];
+
+    // Create Event Handlers
+    for (let index in elements) {
+      const item = elements[index];
+      item.object.addEventListener("click", () => {
+        document.querySelector(item.id).play();
+        setMode(item.mode);
+        setDisplayText(displayText);
+        if (isRecording === true) {
+          setSession([...this.state.session, item.key]);
+        }
+      });
+    }
   }, []);
+
+  useEffect(() => {
+    document.querySelector("#Q").volume = volume / 100;
+    document.querySelector("#W").volume = volume / 100;
+    document.querySelector("#E").volume = volume / 100;
+    document.querySelector("#A").volume = volume / 100;
+    document.querySelector("#S").volume = volume / 100;
+    document.querySelector("#D").volume = volume / 100;
+    document.querySelector("#Z").volume = volume / 100;
+    document.querySelector("#X").volume = volume / 100;
+    document.querySelector("#C").volume = volume / 100;
+  }, [volume]);
+
+  const startRecording = () => {};
+  const handlePowerOnOff = () => {};
+  const replayRecording = () => {};
+
+  const sliderChange = (event) => {
+    console.log(event);
+    if (event.target.value === 0) {
+      setDisplayText("Mute");
+      setPower(false);
+      setVolume(0);
+    } else {
+      setDisplayText("Mute");
+      setPower(false);
+      setVolume(0);
+      setMode("volume");
+    }
+  };
 
   const buttons = [
     {
@@ -160,6 +210,22 @@ const App = () => {
 
   return (
     <div id="drum-machine">
+      {/* Display */}
+      <div className="toolbar" id="display">
+        {displayText}
+      </div>
+      {/* Buttons */}
+      <button className="record toolbar" onClick={startRecording}>
+        <i className="fa fa-record-vinyl" />
+      </button>
+      <button className="on-off toolbar" onClick={handlePowerOnOff}>
+        <i className="fa fa-power-off" />
+      </button>
+      <button className="replay toolbar" onClick={replayRecording}>
+        <i className="fa fa-play" />
+      </button>
+      {/* VolumeBar */}
+      <VolumeBar sliderChange={sliderChange} />
       {/* Drum keys */}
       <div className="drum-keys">
         {buttons.map((item) => {
