@@ -55,7 +55,7 @@ const App = () => {
             setIsRecording(false);
           }, 450 * index);
         }
-      }, 450 * index);
+      }, 460 * index);
     }
     setSession([]);
   };
