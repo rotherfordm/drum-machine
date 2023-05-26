@@ -145,55 +145,55 @@ const App = () => {
     {
       id: "heater-1",
       colorString: "red",
-      key: "Q",
+      keyChar: "Q",
       audioSource: "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3",
     },
     {
       id: "heater-2",
       colorString: "orange",
-      key: "W",
+      keyChar: "W",
       audioSource: "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3",
     },
     {
       id: "heater-3",
       colorString: "yellow",
-      key: "E",
+      keyChar: "E",
       audioSource: "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3",
     },
     {
       id: "heater-4",
       colorString: "green",
-      key: "A",
+      keyChar: "A",
       audioSource: "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3",
     },
     {
       id: "clap",
       colorString: "blue",
-      key: "S",
+      keyChar: "S",
       audioSource: "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3",
     },
     {
       id: "open-hh",
       colorString: "indigo",
-      key: "D",
+      keyChar: "D",
       audioSource: "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3",
     },
     {
       id: "kick-n-hat",
       colorString: "purple",
-      key: "Z",
+      keyChar: "Z",
       audioSource: "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3",
     },
     {
       id: "kick",
       colorString: "pink",
-      key: "X",
+      keyChar: "X",
       audioSource: "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3",
     },
     {
       id: "closed-hh",
       colorString: "fuchsia",
-      key: "C",
+      keyChar: "C",
       audioSource: "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3",
     },
   ];
@@ -218,14 +218,15 @@ const App = () => {
       <VolumeBar sliderChange={sliderChange} />
       {/* Drum keys */}
       <div className="drum-keys">
-        {buttons.map((item) => {
+        {buttons.map((item, index) => {
           return (
             <Tile
+              key={index}
               id={item.id}
               charKey={charKey}
               colorString={item.colorString}
               pressed={pressed}
-              key={item.key}
+              keyChar={item.keyChar}
               audioSource={item.audioSource}
             />
           );

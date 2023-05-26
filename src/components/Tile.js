@@ -7,9 +7,9 @@ const Tile = (props) => {
       className={`drum-pad ${props.charKey}-${props.colorString} ${props.pressed}`}
       name={props.name}
     >
-      <span className="name">{props.key}</span>
+      <span className="name">{props.keyChar}</span>
       <audio
-        id={props.key}
+        id={props.keyChar}
         className="clip"
         type="audio/mp3"
         src={props.audioSource}
