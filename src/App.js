@@ -267,38 +267,43 @@ const App = () => {
   ];
 
   return (
-    <div id="drum-machine">
-      {/* Display */}
-      <div className="toolbar" id="display">
-        {displayText}
-      </div>
-      {/* Buttons */}
-      <button className="record toolbar" onClick={startRecording}>
-        <i className="fa fa-record-vinyl" />
-      </button>
-      <button className="on-off toolbar" onClick={handlePowerOnOff}>
-        <i className="fa fa-power-off" />
-      </button>
-      <button className="replay toolbar" onClick={replayRecording}>
-        <i className="fa fa-play" />
-      </button>
-      {/* VolumeBar */}
-      <VolumeBar sliderChange={sliderChange} />
-      {/* Drum keys */}
-      <div className="drum-keys">
-        {buttons.map((item, index) => {
-          return (
-            <Tile
-              key={index}
-              id={item.id}
-              charKey={charKey}
-              colorString={item.colorString}
-              pressed={pressed}
-              keyChar={item.keyChar}
-              audioSource={item.audioSource}
-            />
-          );
-        })}
+    <div>
+      <div id="drum-machine">
+        <div className="flex">
+          {/* Display */}
+          <div className="toolbar" id="display">
+            {displayText}
+          </div>
+          {/* Buttons */}
+          <button className="record toolbar" onClick={startRecording}>
+            <i className="fa fa-record-vinyl" />
+          </button>
+          <button className="on-off toolbar" onClick={handlePowerOnOff}>
+            <i className="fa fa-power-off" />
+          </button>
+          <button className="replay toolbar" onClick={replayRecording}>
+            <i className="fa fa-play" />
+          </button>
+          {/* VolumeBar */}
+          <VolumeBar sliderChange={sliderChange} />
+        </div>
+
+        {/* Drum keys */}
+        <div className="drum-keys">
+          {buttons.map((item, index) => {
+            return (
+              <Tile
+                key={index}
+                id={item.id}
+                charKey={charKey}
+                colorString={item.colorString}
+                pressed={pressed}
+                keyChar={item.keyChar}
+                audioSource={item.audioSource}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
