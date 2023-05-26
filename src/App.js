@@ -110,10 +110,10 @@ class App extends React.Component {
         color: "c",
       },
     ];
-
+    console.log("componentDidMount");
     for (let index in elements) {
       const item = elements[index];
-      console.log("add event listener 1: " + elements[index]);
+      console.log("add event listener 1: " + item.id);
       item.object.addEventListener("click", () => {
         document.querySelector(item.id).play();
         this.setState({
@@ -130,7 +130,7 @@ class App extends React.Component {
     }
 
     document.addEventListener("keydown", (event) => {
-      console.log("event keydown", event);
+      // console.log("event keydown", event);
       console.log("add event listener 2: " + event.key);
       const key = event.key.toLowerCase();
       for (let index in elements) {
@@ -153,18 +153,18 @@ class App extends React.Component {
       }
     });
 
-    document.addEventListener("keyup", (event) => {
-      const key = event.key.toLowerCase();
-      for (let index in elements) {
-        const item = elements[index];
-        if (key == item.key) {
-          this.setState({
-            color: "",
-            pressed: false,
-          });
-        }
-      }
-    });
+    // document.addEventListener("keyup", (event) => {
+    //   const key = event.key.toLowerCase();
+    //   for (let index in elements) {
+    //     const item = elements[index];
+    //     if (key == item.key) {
+    //       this.setState({
+    //         color: "",
+    //         pressed: false,
+    //       });
+    //     }
+    //   }
+    // });
   }
 
   handlePowerOnOff = () => {
@@ -201,7 +201,7 @@ class App extends React.Component {
 
   sliderChange = (event) => {
     //change the display
-    console.log(event.target.value);
+    // console.log(event.target.value);
     if (event.target.value == 0) {
       this.setState({
         display: "Mute",
@@ -236,6 +236,7 @@ class App extends React.Component {
   };
 
   replayRecording = () => {
+    console.log("this.state.session", this.state.session);
     this.setState({
       display: "Playing",
       recording: false,
@@ -261,9 +262,9 @@ class App extends React.Component {
         }
       }, 450 * index);
     }
-    // this.setState({
-    //   session: [],
-    // });
+    this.setState({
+      session: [],
+    });
   };
 
   render() {
@@ -272,8 +273,7 @@ class App extends React.Component {
     // console.log("this", this);
     // console.log("this.volumeRef", Object.keys(this.volumeRef));
     // console.log("this.volumeRef", this?.volumeRef?.current?.value);
-
-    console.log("this.state.session", this.state.session);
+    // console.log("this.state.session", this.state.session);
 
     return (
       <div>
