@@ -23,6 +23,8 @@ const App = () => {
     const kick = document.querySelector("#kick");
     const closedHh = document.querySelector("#closed-hh");
 
+    console.log("heaterOne", heaterOne);
+
     const elements = [
       {
         object: heaterOne,
@@ -115,38 +117,26 @@ const App = () => {
         setMode(item.mode);
         setDisplayText(displayText);
         if (isRecording === true) {
-          setSession([...this.state.session, item.key]);
+          setSession([...session, item.key]);
         }
       });
     }
   }, []);
-
-  useEffect(() => {
-    document.querySelector("#Q").volume = volume / 100;
-    document.querySelector("#W").volume = volume / 100;
-    document.querySelector("#E").volume = volume / 100;
-    document.querySelector("#A").volume = volume / 100;
-    document.querySelector("#S").volume = volume / 100;
-    document.querySelector("#D").volume = volume / 100;
-    document.querySelector("#Z").volume = volume / 100;
-    document.querySelector("#X").volume = volume / 100;
-    document.querySelector("#C").volume = volume / 100;
-  }, [volume]);
 
   const startRecording = () => {};
   const handlePowerOnOff = () => {};
   const replayRecording = () => {};
 
   const sliderChange = (event) => {
-    console.log(event);
+    console.log(event.target.value);
     if (event.target.value === 0) {
       setDisplayText("Mute");
       setPower(false);
       setVolume(0);
     } else {
-      setDisplayText("Mute");
+      setDisplayText("Volume: " + event.target.value);
       setPower(false);
-      setVolume(0);
+      setVolume(event.target.value);
       setMode("volume");
     }
   };
@@ -232,7 +222,7 @@ const App = () => {
           return (
             <Tile
               id={item.id}
-              charKey={item.charKey}
+              charKey={charKey}
               colorString={item.colorString}
               pressed={pressed}
               key={item.key}
