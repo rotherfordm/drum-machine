@@ -6,7 +6,7 @@ const App = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [displayText, setDisplayText] = useState("Rock On!!");
   const [pressed, setPressed] = useState("enabled");
-  const [power, setPower] = useState("");
+  const [power, setPower] = useState(true);
   const [mode, setMode] = useState("");
   const [charKey, setCharKey] = useState("");
   const [volume, setVolume] = useState(100);
@@ -22,8 +22,6 @@ const App = () => {
     const kickNHat = document.querySelector("#kick-n-hat");
     const kick = document.querySelector("#kick");
     const closedHh = document.querySelector("#closed-hh");
-
-    console.log("heaterOne", heaterOne);
 
     const elements = [
       {
@@ -116,19 +114,89 @@ const App = () => {
         document.querySelector(item.id).play();
         setMode(item.mode);
         setDisplayText(displayText);
-        if (isRecording === true) {
+        if (isRecording) {
           setSession([...session, item.key]);
         }
       });
     }
+
+    document.addEventListener("keydown", (event) => {
+      const key = event.key.toLowerCase();
+      for (let index in elements) {
+        const item = elements[index];
+        if (key === item.key) {
+          document.querySelector(item.id).play();
+          if (isRecording) {
+            setSession([...session, item.key]);
+          } else {
+            setMode(item.mode);
+            setDisplayText(item.displayText);
+            setCharKey(item.color);
+            setPressed(true);
+          }
+        }
+      }
+    });
+
+    document.addEventListener("keyup", (event) => {
+      const key = event.key.toLowerCase();
+      for (let index in elements) {
+        const item = elements[index];
+        if (key === item.key) {
+          setCharKey("");
+          setPressed(false);
+        }
+      }
+    });
   }, []);
 
-  const startRecording = () => {};
-  const handlePowerOnOff = () => {};
-  const replayRecording = () => {};
+  const startRecording = () => {
+    setIsRecording(!isRecording);
+    setDisplayText(isRecording ? "Rock On!!" : "Recording");
+    if (isRecording) {
+      setSession([]);
+      setDisplayText("Recording");
+      setMode("recording");
+    }
+  };
+
+  const handlePowerOnOff = () => {
+    if (power) {
+      setPower(false);
+      setDisplayText("Mute");
+      setVolume(0);
+      setMode("volume");
+    } else {
+      setPower(true);
+      setDisplayText("Rock On!!");
+      setVolume(25);
+      setMode("volume");
+    }
+  };
+
+  const replayRecording = () => {
+    setDisplayText("Playing");
+    setIsRecording(false);
+    for (let index = 0; index < session.length; index++) {
+      let item = session[index].toUpperCase();
+      setTimeout(() => {
+        document.getElementById(item).play();
+        setCharKey(item.toLowerCase());
+        setPressed(true);
+        if (index === session.length - 1) {
+          setTimeout(() => {
+            console.log("resetting");
+            setCharKey("");
+            setPressed("disabled");
+            setIsRecording(false);
+          }, 450 * index);
+        }
+      }, 450 * index);
+    }
+    setSession([]);
+  };
 
   const sliderChange = (event) => {
-    console.log(event.target.value);
     if (event.target.value === 0) {
       setDisplayText("Mute");
       setPower(false);
