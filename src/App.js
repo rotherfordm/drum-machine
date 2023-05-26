@@ -8,7 +8,7 @@ class App extends React.Component {
       recording: false,
       session: [],
       power: true,
-      volume: 25,
+      volume: 80,
       display: "Rock On!!",
       mode: "",
       color: "",
@@ -113,32 +113,41 @@ class App extends React.Component {
 
     for (let index in elements) {
       const item = elements[index];
-      item.object.addEventListener("click", (event) => {
+      console.log("add event listener 1: " + elements[index]);
+      item.object.addEventListener("click", () => {
         document.querySelector(item.id).play();
         this.setState({
           mode: item.mode,
           display: item.displayText,
         });
         if (this.state.recording == true) {
+          this.setState({
+            session: [...this.state.session, item.key],
+          });
           this.state.session.push(item.key);
         }
       });
     }
 
     document.addEventListener("keydown", (event) => {
+      console.log("event keydown", event);
+      console.log("add event listener 2: " + event.key);
       const key = event.key.toLowerCase();
       for (let index in elements) {
         const item = elements[index];
-        if (key == item.key) {
+        if (key === item.key) {
           document.querySelector(item.id).play();
-          this.setState({
-            mode: item.mode,
-            display: item.displayText,
-            color: item.color,
-            pressed: true,
-          });
           if (this.state.recording == true) {
-            this.state.session.push(item.key);
+            this.setState({
+              session: [...this.state.session, item.key],
+            });
+          } else {
+            this.setState({
+              mode: item.mode,
+              display: item.displayText,
+              color: item.color,
+              pressed: true,
+            });
           }
         }
       }
@@ -158,8 +167,6 @@ class App extends React.Component {
     });
   }
 
-  componentWillUnmount() {}
-
   handlePowerOnOff = () => {
     if (this.state.power == true) {
       this.setState({
@@ -168,7 +175,6 @@ class App extends React.Component {
         volume: 0,
         mode: "volume",
       });
-      slider.value = 0;
     } else {
       this.setState({
         power: true,
@@ -176,27 +182,27 @@ class App extends React.Component {
         volume: 25,
         mode: "volume",
       });
-      slider.value = 25;
     }
     this.volumeControl();
   };
 
   //change the html DOM volume
   volumeControl = () => {
-    document.querySelector("#Q").volume = slider.value / 100;
-    document.querySelector("#W").volume = slider.value / 100;
-    document.querySelector("#E").volume = slider.value / 100;
-    document.querySelector("#A").volume = slider.value / 100;
-    document.querySelector("#S").volume = slider.value / 100;
-    document.querySelector("#D").volume = slider.value / 100;
-    document.querySelector("#Z").volume = slider.value / 100;
-    document.querySelector("#X").volume = slider.value / 100;
-    document.querySelector("#C").volume = slider.value / 100;
+    document.querySelector("#Q").volume = this.state.volume / 100;
+    document.querySelector("#W").volume = this.state.volume / 100;
+    document.querySelector("#E").volume = this.state.volume / 100;
+    document.querySelector("#A").volume = this.state.volume / 100;
+    document.querySelector("#S").volume = this.state.volume / 100;
+    document.querySelector("#D").volume = this.state.volume / 100;
+    document.querySelector("#Z").volume = this.state.volume / 100;
+    document.querySelector("#X").volume = this.state.volume / 100;
+    document.querySelector("#C").volume = this.state.volume / 100;
   };
 
-  sliderChange = (volume) => {
+  sliderChange = (event) => {
     //change the display
-    if (slider.value == 0) {
+    console.log(event.target.value);
+    if (event.target.value == 0) {
       this.setState({
         display: "Mute",
         power: false,
@@ -204,14 +210,13 @@ class App extends React.Component {
       });
     } else {
       this.setState({
-        volume: slider.value,
-        display: "Volume: " + slider.value,
+        volume: event.target.value,
+        display: "Volume: " + event.target.value,
         mode: "volume",
         power: true,
       });
     }
     //change the display
-
     this.volumeControl();
   };
 
@@ -235,21 +240,15 @@ class App extends React.Component {
       display: "Playing",
       recording: false,
     });
-    let session = this.state.session;
-    {
-      /* session.map((array, index) => {
-     setTimeout(() => document.getElementById(array.toUpperCase()).play(), 550 * index);
-    })*/
-    }
-
+    const session = this.state.session;
     for (let index = 0; index < session.length; index++) {
       let item = session[index].toUpperCase();
       setTimeout(() => {
-        document.getElementById(item).play(),
-          this.setState({
-            color: item.toLowerCase(),
-            pressed: true,
-          });
+        document.getElementById(item).play();
+        this.setState({
+          color: item.toLowerCase(),
+          pressed: true,
+        });
         if (index === session.length - 1) {
           setTimeout(() => {
             console.log("resetting");
@@ -262,14 +261,19 @@ class App extends React.Component {
         }
       }, 450 * index);
     }
-    this.setState({
-      session: [],
-    });
+    // this.setState({
+    //   session: [],
+    // });
   };
 
   render() {
     let color = this.state.color;
     let pressed = this.state.pressed ? "enabled" : "disabled";
+    // console.log("this", this);
+    // console.log("this.volumeRef", Object.keys(this.volumeRef));
+    // console.log("this.volumeRef", this?.volumeRef?.current?.value);
+
+    console.log("this.state.session", this.state.session);
 
     return (
       <div>
@@ -295,7 +299,7 @@ class App extends React.Component {
               className="slider range toolbar"
               id="slider"
               step="5"
-              value={this.state.volume}
+              // value={this.state.volume}
               onChange={this.sliderChange}
             ></input>
           </div>
