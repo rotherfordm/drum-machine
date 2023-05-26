@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Tile from "./components/Tile";
 import VolumeBar from "./components/VolumeBar";
+import tiles from "./constants/tiles";
 
 const App = () => {
   const [isRecording, setIsRecording] = useState(false);
@@ -111,10 +112,12 @@ const App = () => {
     for (let index in elements) {
       const item = elements[index];
       item.object.addEventListener("click", () => {
-        document.querySelector(item.id).play();
+        // document.querySelector(item.id).play();
         setMode(item.mode);
-        setDisplayText(displayText);
+        setDisplayText(item.displayText);
         if (isRecording) {
+          console.log("add record 1", session, item.key);
+          console.log([...session, item.key]);
           setSession([...session, item.key]);
         }
       });
@@ -124,9 +127,12 @@ const App = () => {
       const key = event.key.toLowerCase();
       for (let index in elements) {
         const item = elements[index];
-        if (key === item.key) {
+        if (key == item.key) {
           document.querySelector(item.id).play();
+
           if (isRecording) {
+            console.log("add record 2", session, item.key);
+            console.log([...session, item.key]);
             setSession([...session, item.key]);
           } else {
             setMode(item.mode);
@@ -142,7 +148,7 @@ const App = () => {
       const key = event.key.toLowerCase();
       for (let index in elements) {
         const item = elements[index];
-        if (key === item.key) {
+        if (key == item.key) {
           setCharKey("");
           setPressed(false);
         }
@@ -152,10 +158,8 @@ const App = () => {
 
   const startRecording = () => {
     setIsRecording(!isRecording);
-    setDisplayText(isRecording ? "Rock On!!" : "Recording");
     if (isRecording) {
       setSession([]);
-      setDisplayText("Recording");
       setMode("recording");
     }
   };
@@ -175,8 +179,8 @@ const App = () => {
   };
 
   const replayRecording = () => {
-    setDisplayText("Playing");
     setIsRecording(false);
+    setDisplayText("Playing");
     for (let index = 0; index < session.length; index++) {
       let item = session[index].toUpperCase();
       setTimeout(() => {
@@ -209,66 +213,12 @@ const App = () => {
     }
   };
 
-  const buttons = [
-    {
-      id: "heater-1",
-      colorString: "red",
-      keyChar: "Q",
-      audioSource: "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3",
-    },
-    {
-      id: "heater-2",
-      colorString: "orange",
-      keyChar: "W",
-      audioSource: "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3",
-    },
-    {
-      id: "heater-3",
-      colorString: "yellow",
-      keyChar: "E",
-      audioSource: "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3",
-    },
-    {
-      id: "heater-4",
-      colorString: "green",
-      keyChar: "A",
-      audioSource: "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3",
-    },
-    {
-      id: "clap",
-      colorString: "blue",
-      keyChar: "S",
-      audioSource: "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3",
-    },
-    {
-      id: "open-hh",
-      colorString: "indigo",
-      keyChar: "D",
-      audioSource: "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3",
-    },
-    {
-      id: "kick-n-hat",
-      colorString: "purple",
-      keyChar: "Z",
-      audioSource: "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3",
-    },
-    {
-      id: "kick",
-      colorString: "pink",
-      keyChar: "X",
-      audioSource: "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3",
-    },
-    {
-      id: "closed-hh",
-      colorString: "fuchsia",
-      keyChar: "C",
-      audioSource: "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3",
-    },
-  ];
+  console.log("session", session);
 
   return (
     <div>
       <div id="drum-machine">
+        {isRecording ? "Recording" : null}
         <div className="flex">
           {/* Display */}
           <div className="toolbar" id="display">
@@ -290,7 +240,7 @@ const App = () => {
 
         {/* Drum keys */}
         <div className="drum-keys">
-          {buttons.map((item, index) => {
+          {tiles.map((item, index) => {
             return (
               <Tile
                 key={index}
