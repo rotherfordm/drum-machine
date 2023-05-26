@@ -6,10 +6,10 @@ const Tile = (props) => {
       id={props.id}
       className={`drum-pad ${props.charKey}-${props.colorString} ${props.pressed}`}
       name={props.name}
-      onClick={() => {
-        document.querySelector("#" + props.keyChar).play();
-        console.log("onclick");
-      }}
+      // onClick={() => {
+      //   console.log("onClick");
+      //   document.querySelector("#" + props.keyChar).play();
+      // }}
     >
       <span className="name">{props.keyChar}</span>
       <audio
