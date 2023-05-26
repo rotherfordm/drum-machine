@@ -9,6 +9,7 @@ const VolumeBar = (props) => {
       className="slider range toolbar"
       id="slider"
       step="5"
+      value={props.volumeValue}
       onChange={props.sliderChange}
     />
   );

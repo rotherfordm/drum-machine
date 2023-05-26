@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Tile from "./components/Tile";
 import VolumeBar from "./components/VolumeBar";
 import tiles from "./constants/tiles";
@@ -15,14 +15,6 @@ const App = () => {
   const [charKey, setCharKey] = useState("");
   const [volume, setVolume] = useState(100);
   const [session, setSession] = useState([]);
-
-  useEffect(() => {
-    // Create Event Handlers
-    try {
-    } catch (e) {
-      console.log(e);
-    }
-  }, []);
 
   const startRecording = () => {
     setIsRecording(!isRecording);
@@ -84,7 +76,26 @@ const App = () => {
   console.log("session", session);
 
   return (
-    <div>
+    <div
+      onKeyDown={(e) => {
+        const item = elements.find((x) => x.key === e.key.toLowerCase());
+        if (item) {
+          document.querySelector(item.id).play();
+          if (isRecording) {
+            setSession([...session, item.key]);
+          } else {
+            setMode(item.mode);
+            setDisplayText(item.displayText);
+            setCharKey(item.color);
+            setPressed(true);
+          }
+        }
+      }}
+      onKeyUp={() => {
+        setCharKey("");
+        setPressed(false);
+      }}
+    >
       <div id="drum-machine">
         {isRecording ? "Recording" : null}
         <div className="flex">
@@ -103,32 +114,11 @@ const App = () => {
             <i className="fa fa-play" />
           </button>
           {/* VolumeBar */}
-          <VolumeBar sliderChange={sliderChange} />
+          <VolumeBar sliderChange={sliderChange} volumeValue={volume} />
         </div>
 
         {/* Drum keys */}
-        <div
-          className="drum-keys"
-          onKeyDown={(e) => {
-            const item = elements.find((x) => x.key === e.key.toLowerCase());
-            if (item) {
-              document.querySelector(item.id).play();
-              if (isRecording) {
-                setSession([...session, item.key]);
-              } else {
-                setMode(item.mode);
-                setDisplayText(item.displayText);
-                setCharKey(item.color);
-                setPressed(true);
-              }
-            }
-          }}
-          onKeyUp={() => {
-            const key = event.key.toLowerCase();
-            setCharKey("");
-            setPressed(false);
-          }}
-        >
+        <div className="drum-keys">
           {tiles.map((item, index) => {
             return (
               <Tile
