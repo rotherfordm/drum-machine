@@ -110,21 +110,23 @@ const App = () => {
         <div
           className="drum-keys"
           onKeyDown={(e) => {
-            console.log("onKeyDown");
             const item = elements.find((x) => x.key === e.key.toLowerCase());
-            document.querySelector(item.id).play();
-            if (isRecording) {
-              setSession([...session, item.key]);
-              setSession(item.key);
-            } else {
-              setMode(item.mode);
-              setDisplayText(item.displayText);
-              setCharKey(item.color);
-              setPressed(true);
+            if (item) {
+              document.querySelector(item.id).play();
+              if (isRecording) {
+                setSession([...session, item.key]);
+              } else {
+                setMode(item.mode);
+                setDisplayText(item.displayText);
+                setCharKey(item.color);
+                setPressed(true);
+              }
             }
           }}
           onKeyUp={() => {
-            console.log("onKeyUp");
+            const key = event.key.toLowerCase();
+            setCharKey("");
+            setPressed(false);
           }}
         >
           {tiles.map((item, index) => {
