@@ -6,10 +6,16 @@ const Tile = (props) => {
       id={props.id}
       className={`drum-pad ${props.charKey}-${props.colorString} ${props.pressed}`}
       name={props.name}
-      // onClick={() => {
-      //   console.log("onClick");
-      //   document.querySelector("#" + props.keyChar).play();
-      // }}
+      key={props.key}
+      session={props.session}
+      onClick={() => {
+        console.log("onClick");
+        document.querySelector("#" + props.keyChar).play();
+        if (props.isRecording) {
+          props.setSession([...props.session, props.key]);
+        }
+        console.log("session");
+      }}
     >
       <span className="name">{props.keyChar}</span>
       <audio

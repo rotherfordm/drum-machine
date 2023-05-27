@@ -13,13 +13,13 @@ const App = () => {
   const [power, setPower] = useState(true);
   const [mode, setMode] = useState("");
   const [charKey, setCharKey] = useState("");
-  const [volume, setVolume] = useState(100);
-  const [session, setSession] = useState([]);
+  const [volume, setVolume] = useState(25);
+  const [session, setSession] = useState(['']);
 
   const startRecording = () => {
     setIsRecording(!isRecording);
     if (isRecording) {
-      setSession([]);
+      setSession(['']);
       setMode("recording");
     }
   };
@@ -46,7 +46,7 @@ const App = () => {
       setTimeout(() => {
         document.getElementById(item).play();
         setCharKey(item.toLowerCase());
-        setPressed(true);
+        setPressed("enabled");
         if (index === session.length - 1) {
           setTimeout(() => {
             console.log("resetting");
@@ -55,9 +55,9 @@ const App = () => {
             setIsRecording(false);
           }, 450 * index);
         }
-      }, 460 * index);
+      }, 450 * index);
     }
-    setSession([]);
+    setSession(['']);
   };
 
   const sliderChange = (event) => {
@@ -81,19 +81,19 @@ const App = () => {
         const item = elements.find((x) => x.key === e.key.toLowerCase());
         if (item) {
           document.querySelector(item.id).play();
+          setCharKey(item.color);
+          setPressed("enabled");
           if (isRecording) {
             setSession([...session, item.key]);
           } else {
             setMode(item.mode);
             setDisplayText(item.displayText);
-            setCharKey(item.color);
-            setPressed(true);
           }
         }
       }}
       onKeyUp={() => {
         setCharKey("");
-        setPressed(false);
+        setPressed("disabled");
       }}
     >
       <div id="drum-machine">
@@ -129,6 +129,9 @@ const App = () => {
                 pressed={pressed}
                 keyChar={item.keyChar}
                 audioSource={item.audioSource}
+                isRecording={isRecording}
+                session={session}
+                setSession={setSession}
               />
             );
           })}
