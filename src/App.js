@@ -14,12 +14,12 @@ const App = () => {
   const [mode, setMode] = useState("");
   const [charKey, setCharKey] = useState("");
   const [volume, setVolume] = useState(25);
-  const [session, setSession] = useState(['']);
+  const [session, setSession] = useState([]);
 
   const startRecording = () => {
     setIsRecording(!isRecording);
     if (isRecording) {
-      setSession(['']);
+      setSession([]);
       setMode("recording");
     }
   };
@@ -57,7 +57,7 @@ const App = () => {
         }
       }, 450 * index);
     }
-    setSession(['']);
+    setSession([]);
   };
 
   const sliderChange = (event) => {
@@ -73,7 +73,7 @@ const App = () => {
     }
   };
 
-  console.log("session", session);
+  // console.log("session", session);
 
   return (
     <div

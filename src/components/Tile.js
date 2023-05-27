@@ -9,12 +9,10 @@ const Tile = (props) => {
       key={props.key}
       session={props.session}
       onClick={() => {
-        console.log("onClick");
         document.querySelector("#" + props.keyChar).play();
         if (props.isRecording) {
-          props.setSession([...props.session, props.key]);
+          props.setSession([...props.session, props.keyChar]);
         }
-        console.log("session");
       }}
     >
       <span className="name">{props.keyChar}</span>
