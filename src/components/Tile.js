@@ -1,11 +1,15 @@
 import React from "react";
 import tiles from "./constants/tiles";
-import {slider} from "./VolumeBar"
+import { Slider } from "./VolumeBar";
 
+const slider = Slider();
 
 export const volumeControl = () => {
-  tiles.map((item, index) => document.getElementById(item.keyChar).volume = slider.value / 100)
-}
+  tiles.map(
+    (item, index) =>
+      (document.getElementById(item.keyChar).volume = slider.value / 100)
+  );
+};
 
 export const Tile = (props) => {
   return (

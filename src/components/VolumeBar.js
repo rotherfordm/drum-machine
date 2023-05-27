@@ -1,7 +1,5 @@
 import React from "react";
 
-
-
 export const VolumeBar = (props) => {
   const sliderChange = (event) => {
     if (event.target.value === 0) {
@@ -29,6 +27,6 @@ export const VolumeBar = (props) => {
   );
 };
 
-export const slider = document.getElementById(slider)
-
-
+export const Slider = () => {
+  return document.getElementById("slider");
+};
