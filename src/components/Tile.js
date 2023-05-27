@@ -1,6 +1,13 @@
 import React from "react";
+import tiles from "./constants/tiles";
+import {slider} from "./VolumeBar"
 
-const Tile = (props) => {
+
+export const volumeControl = () => {
+  tiles.map((item, index) => document.getElementById(item.keyChar).volume = slider.value / 100)
+}
+
+export const Tile = (props) => {
   return (
     <button
       id={props.id}
@@ -10,6 +17,8 @@ const Tile = (props) => {
       session={props.session}
       onClick={() => {
         document.querySelector("#" + props.keyChar).play();
+        props.setDisplayText(props.display);
+        console.log(props.display);
         if (props.isRecording) {
           props.setSession([...props.session, props.keyChar]);
         }
@@ -25,5 +34,3 @@ const Tile = (props) => {
     </button>
   );
 };
-
-export default Tile;

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import Tile from "./components/Tile";
-import VolumeBar from "./components/VolumeBar";
-import tiles from "./constants/tiles";
-import Elements from "./constants/elements";
+import {VolumeBar} from "./components/VolumeBar";
+import tiles from "./components/constants/tiles";
+import Elements from "./components/constants/elements";
+import {Tile, volumeControl } from "./components/Tile";
 
 const elements = Elements();
 
 const App = () => {
   const [isRecording, setIsRecording] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [displayText, setDisplayText] = useState("Rock On!!");
   const [pressed, setPressed] = useState("enabled");
   const [power, setPower] = useState(true);
@@ -21,6 +22,7 @@ const App = () => {
     if (isRecording) {
       setSession([]);
       setMode("recording");
+      setIsPlaying(false);
     }
   };
 
@@ -36,11 +38,12 @@ const App = () => {
       setVolume(25);
       setMode("volume");
     }
+    volumeControl();
   };
 
   const replayRecording = () => {
     setIsRecording(false);
-    setDisplayText("Playing");
+    setIsPlaying(true);
     for (let index = 0; index < session.length; index++) {
       let item = session[index].toUpperCase();
       setTimeout(() => {
@@ -49,10 +52,12 @@ const App = () => {
         setPressed("enabled");
         if (index === session.length - 1) {
           setTimeout(() => {
-            console.log("resetting");
+            //console.log("resetting");
             setCharKey("");
             setPressed("disabled");
             setIsRecording(false);
+            setDisplayText("");
+            setIsPlaying(false);
           }, 450 * index);
         }
       }, 450 * index);
@@ -60,18 +65,7 @@ const App = () => {
     setSession([]);
   };
 
-  const sliderChange = (event) => {
-    if (event.target.value === 0) {
-      setDisplayText("Mute");
-      setPower(false);
-      setVolume(0);
-    } else {
-      setDisplayText("Volume: " + event.target.value);
-      setPower(false);
-      setVolume(event.target.value);
-      setMode("volume");
-    }
-  };
+  
 
   // console.log("session", session);
 
@@ -97,7 +91,8 @@ const App = () => {
       }}
     >
       <div id="drum-machine">
-        {isRecording ? "Recording" : null}
+        {isRecording ? "Recording" : isPlaying ? "Playing" : "Start Making Sound"}
+        <br></br>
         <div className="flex">
           {/* Display */}
           <div className="toolbar" id="display">
@@ -114,7 +109,13 @@ const App = () => {
             <i className="fa fa-play" />
           </button>
           {/* VolumeBar */}
-          <VolumeBar sliderChange={sliderChange} volumeValue={volume} />
+          <VolumeBar 
+          volumeValue={volume} 
+          setDisplayText={setDisplayText}
+          setPower={setPower}
+          setVolume={setVolume}
+          setMode={setMode}
+          />
         </div>
 
         {/* Drum keys */}
@@ -126,6 +127,8 @@ const App = () => {
                 id={item.id}
                 charKey={charKey}
                 colorString={item.colorString}
+                display={item.displayText}
+                setDisplayText={setDisplayText}
                 pressed={pressed}
                 keyChar={item.keyChar}
                 audioSource={item.audioSource}

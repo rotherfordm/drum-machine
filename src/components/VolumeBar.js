@@ -1,6 +1,20 @@
 import React from "react";
 
-const VolumeBar = (props) => {
+
+
+export const VolumeBar = (props) => {
+  const sliderChange = (event) => {
+    if (event.target.value === 0) {
+      props.setDisplayText("Mute");
+      props.setPower(false);
+      props.setVolume(0);
+    } else {
+      props.setDisplayText("Volume: " + event.target.value);
+      props.setPower(true);
+      props.setVolume(event.target.value);
+      props.setMode("volume");
+    }
+  };
   return (
     <input
       type="range"
@@ -10,9 +24,11 @@ const VolumeBar = (props) => {
       id="slider"
       step="5"
       value={props.volumeValue}
-      onChange={props.sliderChange}
+      onChange={sliderChange}
     />
   );
 };
 
-export default VolumeBar;
+export const slider = document.getElementById(slider)
+
+
