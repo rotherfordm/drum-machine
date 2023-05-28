@@ -65,16 +65,6 @@ const App = () => {
     setSession([]);
   };
 
-  console.log("isRecording", isRecording);
-  console.log("isPlaying", isPlaying);
-  console.log("displayText", displayText);
-  console.log("pressed", pressed);
-  console.log("power", power);
-  console.log("mode", mode);
-  console.log("charKey", charKey);
-  console.log("volume", volume);
-  console.log("session", session);
-
   return (
     <div
       onKeyDown={(e) => {
