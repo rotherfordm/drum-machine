@@ -32,13 +32,14 @@ const App = () => {
       setDisplayText("Mute");
       setVolume(0);
       setMode("volume");
+      volumeControl(0);
     } else {
       setPower(true);
       setDisplayText("Rock On!!");
       setVolume(25);
       setMode("volume");
+      volumeControl(25);
     }
-    volumeControl();
   };
 
   const replayRecording = () => {
@@ -52,7 +53,6 @@ const App = () => {
         setPressed("enabled");
         if (index === session.length - 1) {
           setTimeout(() => {
-            //console.log("resetting");
             setCharKey("");
             setPressed("disabled");
             setIsRecording(false);
@@ -65,7 +65,15 @@ const App = () => {
     setSession([]);
   };
 
-  // console.log("session", session);
+  console.log("isRecording", isRecording);
+  console.log("isPlaying", isPlaying);
+  console.log("displayText", displayText);
+  console.log("pressed", pressed);
+  console.log("power", power);
+  console.log("mode", mode);
+  console.log("charKey", charKey);
+  console.log("volume", volume);
+  console.log("session", session);
 
   return (
     <div

@@ -1,14 +1,10 @@
 import React from "react";
 import tiles from "./constants/tiles";
 
-export const volumeControl = () => {
-  const slider = document.getElementById("slider");
-  // console.log("slider", slider);
-  // console.log("slider.value", slider.value);
+export const volumeControl = (globalVolumeVal) => {
   for (let index in tiles) {
-    // console.log("tiles[index].keyChar", tiles[index].keyChar);
-    // console.log(document.getElementById(tiles[index].keyChar).volume);
-    document.getElementById(tiles[index].keyChar).volume = slider.value / 100;
+    document.getElementById(tiles[index].keyChar).volume =
+      globalVolumeVal / 100;
   }
 };
 
@@ -23,7 +19,6 @@ export const Tile = (props) => {
       onClick={() => {
         document.querySelector("#" + props.keyChar).play();
         props.setDisplayText(props.display);
-        console.log(props.display);
         if (props.isRecording) {
           props.setSession([...props.session, props.keyChar]);
         }

@@ -13,7 +13,7 @@ export const VolumeBar = (props) => {
       props.setVolume(event.target.value);
       props.setMode("volume");
     }
-    volumeControl();
+    volumeControl(event.target.value);
   };
   return (
     <input
