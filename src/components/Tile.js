@@ -1,16 +1,13 @@
 import React from "react";
 import tiles from "./constants/tiles";
-import { Slider } from "./VolumeBar";
-
-const slider = Slider();
-
-console.log(slider);
 
 export const volumeControl = () => {
-  tiles.map((item, index) => {
-    console.log(slider);
-    return (document.getElementById(item.keyChar).volume = slider.value / 100);
-  });
+  const slider = document.getElementById("slider");
+  // console.log("slider", slider);
+  // console.log("slider.value", slider.value);
+  for (let index in tiles) {
+    document.getElementById(tiles[index].keyChar).volume = slider.value / 100;
+  }
 };
 
 export const Tile = (props) => {

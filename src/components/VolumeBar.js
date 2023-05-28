@@ -26,7 +26,3 @@ export const VolumeBar = (props) => {
     />
   );
 };
-
-export const Slider = () => {
-  return document.getElementById("slider");
-};

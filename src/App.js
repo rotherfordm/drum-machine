@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import {VolumeBar} from "./components/VolumeBar";
+import { VolumeBar } from "./components/VolumeBar";
 import tiles from "./components/constants/tiles";
 import Elements from "./components/constants/elements";
-import {Tile, volumeControl } from "./components/Tile";
+import { Tile, volumeControl } from "./components/Tile";
 
 const elements = Elements();
 
@@ -65,8 +65,6 @@ const App = () => {
     setSession([]);
   };
 
-  
-
   // console.log("session", session);
 
   return (
@@ -91,7 +89,11 @@ const App = () => {
       }}
     >
       <div id="drum-machine">
-        {isRecording ? "Recording" : isPlaying ? "Playing" : "Start Making Sound"}
+        {isRecording
+          ? "Recording"
+          : isPlaying
+          ? "Playing"
+          : "Start Making Sound"}
         <br></br>
         <div className="flex">
           {/* Display */}
@@ -109,12 +111,12 @@ const App = () => {
             <i className="fa fa-play" />
           </button>
           {/* VolumeBar */}
-          <VolumeBar 
-          volumeValue={volume} 
-          setDisplayText={setDisplayText}
-          setPower={setPower}
-          setVolume={setVolume}
-          setMode={setMode}
+          <VolumeBar
+            volumeValue={volume}
+            setDisplayText={setDisplayText}
+            setPower={setPower}
+            setVolume={setVolume}
+            setMode={setMode}
           />
         </div>
 
