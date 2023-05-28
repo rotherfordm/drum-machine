@@ -1,4 +1,5 @@
 import React from "react";
+import { volumeControl } from "./Tile";
 
 export const VolumeBar = (props) => {
   const sliderChange = (event) => {
@@ -12,6 +13,7 @@ export const VolumeBar = (props) => {
       props.setVolume(event.target.value);
       props.setMode("volume");
     }
+    volumeControl();
   };
   return (
     <input

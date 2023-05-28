@@ -6,6 +6,8 @@ export const volumeControl = () => {
   // console.log("slider", slider);
   // console.log("slider.value", slider.value);
   for (let index in tiles) {
+    // console.log("tiles[index].keyChar", tiles[index].keyChar);
+    // console.log(document.getElementById(tiles[index].keyChar).volume);
     document.getElementById(tiles[index].keyChar).volume = slider.value / 100;
   }
 };
