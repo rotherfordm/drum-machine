@@ -5,7 +5,7 @@ import Elements from "./components/constants/elements";
 import { Tile } from "./components/Tile";
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './components/constants/global';
-import  ToggleTheme  from './components/ToggleTheme';
+import  Toggle  from './components/Toggle';
 import { darkTheme, lightTheme } from "./components/constants/theme";
 import Buttons from "./components/Buttons";
 
@@ -22,7 +22,15 @@ const App = () => {
   const [session, setSession] = useState([]);
   const [theme, setTheme] = useState('light');
 
- 
+  const toggleTheme = () => {
+    // if the theme is not light, then set it to dark
+    if (theme === 'light') {
+      setTheme('dark');
+    // otherwise, it should be light
+    } else {
+      setTheme('light');
+    }
+  }
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
@@ -107,9 +115,7 @@ const App = () => {
         </div>
         {/* Toggle Theme */}
         <div>
-          <ToggleTheme 
-          theme={theme}
-          setTheme={setTheme} />
+        <Toggle theme={theme} toggleTheme={toggleTheme} />
         </div>
       </div>
     </div>
