@@ -3,6 +3,10 @@ import { VolumeBar } from "./components/VolumeBar";
 import tiles from "./components/constants/tiles";
 import Elements from "./components/constants/elements";
 import { Tile, volumeControl } from "./components/Tile";
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyles } from './components/constants/global';
+import { ToggleTheme } from './components/ToggleTheme';
+import { darkTheme, lightTheme } from "./components/constants/theme";
 
 const elements = Elements();
 
@@ -16,6 +20,7 @@ const App = () => {
   const [charKey, setCharKey] = useState("");
   const [volume, setVolume] = useState(25);
   const [session, setSession] = useState([]);
+  const [theme, setTheme] = useState('light');
 
   const startRecording = () => {
     setIsRecording(!isRecording);
@@ -66,6 +71,8 @@ const App = () => {
   };
 
   return (
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <GlobalStyles />
     <div
       onKeyDown={(e) => {
         const item = elements.find((x) => x.key === e.key.toLowerCase());
@@ -139,8 +146,15 @@ const App = () => {
             );
           })}
         </div>
+        {/* Toggle Theme */}
+        <div>
+          <ToggleTheme 
+          theme={theme}
+          setTheme={setTheme} />
+        </div>
       </div>
     </div>
+    </ThemeProvider>
   );
 };
 
