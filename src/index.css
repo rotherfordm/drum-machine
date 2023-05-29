@@ -101,7 +101,6 @@ button:hover,
 .x-pink::before,
 .c-fuchsia::before {
   top: 125px;
-  z-index: 2 !important;
 }
 
 
