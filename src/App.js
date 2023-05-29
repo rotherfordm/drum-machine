@@ -35,6 +35,10 @@ const App = () => {
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyles />
+      {/* Toggle Theme */}
+      <div>
+        <Toggle className="toggle" theme={theme} toggleTheme={toggleTheme} />
+        </div>
     <div
       onKeyDown={(e) => {
         const item = elements.find((x) => x.key === e.key.toLowerCase());
@@ -113,10 +117,7 @@ const App = () => {
             );
           })}
         </div>
-        {/* Toggle Theme */}
-        <div>
-        <Toggle theme={theme} toggleTheme={toggleTheme} />
-        </div>
+        
       </div>
     </div>
     </ThemeProvider>
