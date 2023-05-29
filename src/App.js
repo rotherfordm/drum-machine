@@ -5,7 +5,7 @@ import Elements from "./components/constants/elements";
 import { Tile } from "./components/Tile";
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './components/constants/global';
-import { ToggleTheme } from './components/ToggleTheme';
+import  ToggleTheme  from './components/ToggleTheme';
 import { darkTheme, lightTheme } from "./components/constants/theme";
 import Buttons from "./components/Buttons";
 

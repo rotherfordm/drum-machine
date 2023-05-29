@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import sun from require("./constants/icons/sun.png");
+import moon from require("./constants/icons/moon.png");
+import { ToggleContainer } from "./ToggleTheme.styled";
+
 
 
 // The function that toggles between themes
-export const ToggleTheme = (props) => {
-    const toggleTheme = () => {
+ const ToggleTheme = (props) => {
+    const toggle = () => {
         // if the theme is not light, then set it to dark
         if (props.theme === 'light') {
           props.setTheme('dark');
@@ -13,6 +17,13 @@ export const ToggleTheme = (props) => {
         }
           }
   return (
-    <button onClick={toggleTheme}>Toggle theme</button>
+    <ToggleContainer onClick={toggle}>
+      <i src={sun}></i>
+      <i src={moon}></i> 
+    </ToggleContainer>
   )
+  
 }
+
+
+  export default ToggleTheme;
