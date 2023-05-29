@@ -11,7 +11,6 @@ export const VolumeBar = (props) => {
       props.setDisplayText("Volume: " + event.target.value);
       props.setPower(true);
       props.setVolume(event.target.value);
-      props.setMode("volume");
     }
     volumeControl(event.target.value);
   };
