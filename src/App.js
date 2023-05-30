@@ -124,8 +124,9 @@ const App = () => {
         {/* Drum keys */}
         <div className="drum-keys">
         {tiles.map((item, index) => {
-            mode === 'drum' ? (
-             <Pad
+          if (mode === "drum") {
+           
+              (<Pad
                 key={index}
                 id={item.idDrum}
                 charKey={charKey}
@@ -138,27 +139,27 @@ const App = () => {
                 isRecording={isRecording}
                 session={session}
                 setSession={setSession}
-              />
-              )
-           : mode === 'piano' ? (
-            <Key 
-              key={index}
-              id={item.idPiano}
-              charKey={charKey}
-              colorString={item.colorString}
-              display={item.displayKeyText}
-              setDisplayText={setDisplayText}
-              pressed={pressed}
-              keyChar={item.keyChar}
-              audioSource={item.audioSourcePiano}
-              isRecording={isRecording}
-              session={session}
-              setSession={setSession}/>
-            )
-          : null
+                />)
+          } else {
+            
+              (<Key 
+                key={index}
+                id={item.idPiano}
+                charKey={charKey}
+                colorString={item.colorString}
+                display={item.displayKeyText}
+                setDisplayText={setDisplayText}
+                pressed={pressed}
+                keyChar={item.keyChar}
+                audioSource={item.audioSourcePiano}
+                isRecording={isRecording}
+                session={session}
+                setSession={setSession}/>
+                )
+          } 
         })}
         </div>
-        
+      
       </div>
     </ThemeProvider>
   );
