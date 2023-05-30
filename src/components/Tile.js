@@ -1,9 +1,12 @@
 import React from "react";
 import tiles from "./constants/tiles";
 
+
+
 export const volumeControl = (globalVolumeVal) => {
+
   for (let index in tiles) {
-    document.getElementsByClassName(tiles[index].keyChar).volume =
+    document.getElementById(tiles[index].keyChar).volume =
       globalVolumeVal / 100;
   }
 };
@@ -27,7 +30,7 @@ export const Pad = (props) => {
       <span className="name">{props.keyChar}</span>
       <audio
         id={props.keyChar}
-        className="clip"
+        className={`clip ${props.keyChar}`}
         type="audio/mp3"
         src={props.audioSource}
       />
@@ -44,7 +47,7 @@ export const Key = (props) => {
       key={props.key}
       session={props.session}
       onClick={() => {
-        document.querySelector("#" + props.keyChar).play();
+        document.querySelector("#" + props.keyChar.toLowerCase()).play();
         props.setDisplayText(props.display);
         if (props.isRecording) {
           props.setSession([...props.session, props.keyChar]);
@@ -53,8 +56,8 @@ export const Key = (props) => {
     >
       <span className="name">{props.keyChar}</span>
       <audio
-        id={props.keyChar}
-        className={props.keyChar}
+        id={props.keyChar.toLowerCase()}
+        className={`clip ${props.keyChar}`}
         type="audio/mp3"
         src={props.audioSource}
       />

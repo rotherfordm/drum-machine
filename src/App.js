@@ -48,7 +48,7 @@ const App = () => {
     }
   };
 
-  console.log("mode", mode);
+ 
   return (
     <ThemeProvider
       /*theme={theme === 'light' ? lightTheme : darkTheme}*/
@@ -68,7 +68,7 @@ const App = () => {
         onKeyDown={(e) => {
           const item = elements.find((x) => x.key === e.key.toLowerCase());
           if (item) {
-            document.querySelector(item.id).play();
+            document.querySelector('.' + item.id).play();
             setCharKey(item.color);
             setPressed("enabled");
             if (isRecording) {
@@ -89,50 +89,51 @@ const App = () => {
             : isPlaying
             ? "Playing"
             : "Start Making Sound"}
-          <br></br>
           <div className="flex">
             {/* Display */}
             <div className="toolbar" id="display">
               {displayText}
             </div>
             {/* Buttons */}
-
+            <br></br>
             {mode === "drum" ? (
-              <Buttons
-                setIsPlaying={setIsPlaying}
-                isPlaying={isPlaying}
-                setIsRecording={setIsRecording}
-                isRecording={isRecording}
-                setSession={setSession}
-                session={session}
-                setDisplayText={setDisplayText}
-                setPower={setPower}
-                power={power}
-                setVolume={setVolume}
-                setPressed={setPressed}
-                pressed={pressed}
-                setCharKey={setCharKey}
-              />
+              <div className="flex">
+                <Buttons
+                  setIsPlaying={setIsPlaying}
+                  isPlaying={isPlaying}
+                  setIsRecording={setIsRecording}
+                  isRecording={isRecording}
+                  setSession={setSession}
+                  session={session}
+                  setDisplayText={setDisplayText}
+                  setPower={setPower}
+                  power={power}
+                  setVolume={setVolume}
+                  setPressed={setPressed}
+                  pressed={pressed}
+                  setCharKey={setCharKey}
+                />
+                {/* VolumeBar */}
+                <VolumeBar
+                  volumeValue={volume}
+                  setDisplayText={setDisplayText}
+                  setPower={setPower}
+                  setVolume={setVolume}
+                />
+              </div>
             ) : null}
 
-            {mode === "piano" ? <>piano</> : null}
-
-            {/* VolumeBar */}
-            <VolumeBar
-              volumeValue={volume}
-              setDisplayText={setDisplayText}
-              setPower={setPower}
-              setVolume={setVolume}
-            />
+            {mode === "piano" ? <></> : null}
+           
           </div>
-        </div>
-
+      
         {/* Drum keys */}
         <div className="drum-keys">
           {mode === "drum"
             ? tiles.map((item, index) => {
                 return (
                   <Pad
+                    mode={mode}
                     key={index}
                     id={item.idDrum}
                     charKey={charKey}
@@ -151,6 +152,7 @@ const App = () => {
             : tiles.map((item, index) => {
                 return (
                   <Key
+                    mode={mode}
                     key={index}
                     id={item.idPiano}
                     charKey={charKey}
@@ -167,6 +169,7 @@ const App = () => {
                 );
               })}
         </div>
+      </div>
       </div>
     </ThemeProvider>
   );
