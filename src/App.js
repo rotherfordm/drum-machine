@@ -3,10 +3,15 @@ import { VolumeBar } from "./components/VolumeBar";
 import tiles from "./components/constants/tiles";
 import Elements from "./components/constants/elements";
 import { Pad, Key } from "./components/Tile";
-import { ThemeProvider } from 'styled-components';
-import { GlobalStyles } from './components/constants/global';
-import  Toggle  from './components/Toggle';
-import { darkTheme, lightTheme, drumMode, pianoMode } from "./components/constants/theme";
+import { ThemeProvider } from "styled-components";
+import { GlobalStyles } from "./components/constants/global";
+import Toggle from "./components/Toggle";
+import {
+  darkTheme,
+  lightTheme,
+  drumMode,
+  pianoMode,
+} from "./components/constants/theme";
 import Buttons from "./components/Buttons";
 
 const elements = Elements();
@@ -43,6 +48,7 @@ const App = () => {
     }
   };
 
+  console.log("mode", mode);
   return (
     <ThemeProvider
       /*theme={theme === 'light' ? lightTheme : darkTheme}*/
@@ -119,47 +125,48 @@ const App = () => {
               setVolume={setVolume}
             />
           </div>
-          </div>
+        </div>
 
         {/* Drum keys */}
         <div className="drum-keys">
-        {tiles.map((item, index) => {
-          if (mode === "drum") {
-           
-              (<Pad
-                key={index}
-                id={item.idDrum}
-                charKey={charKey}
-                colorString={item.colorString}
-                display={item.displayPadText}
-                setDisplayText={setDisplayText}
-                pressed={pressed}
-                keyChar={item.keyChar}
-                audioSource={item.audioSourceDrum}
-                isRecording={isRecording}
-                session={session}
-                setSession={setSession}
-                />)
-          } else {
-            
-              (<Key 
-                key={index}
-                id={item.idPiano}
-                charKey={charKey}
-                colorString={item.colorString}
-                display={item.displayKeyText}
-                setDisplayText={setDisplayText}
-                pressed={pressed}
-                keyChar={item.keyChar}
-                audioSource={item.audioSourcePiano}
-                isRecording={isRecording}
-                session={session}
-                setSession={setSession}/>
-                )
-          } 
-        })}
+          {mode === "drum"
+            ? tiles.map((item, index) => {
+                return (
+                  <Pad
+                    key={index}
+                    id={item.idDrum}
+                    charKey={charKey}
+                    colorString={item.colorString}
+                    display={item.displayPadText}
+                    setDisplayText={setDisplayText}
+                    pressed={pressed}
+                    keyChar={item.keyChar}
+                    audioSource={item.audioSourceDrum}
+                    isRecording={isRecording}
+                    session={session}
+                    setSession={setSession}
+                  />
+                );
+              })
+            : tiles.map((item, index) => {
+                return (
+                  <Key
+                    key={index}
+                    id={item.idPiano}
+                    charKey={charKey}
+                    colorString={item.colorString}
+                    display={item.displayKeyText}
+                    setDisplayText={setDisplayText}
+                    pressed={pressed}
+                    keyChar={item.keyChar}
+                    audioSource={item.audioSourcePiano}
+                    isRecording={isRecording}
+                    session={session}
+                    setSession={setSession}
+                  />
+                );
+              })}
         </div>
-      
       </div>
     </ThemeProvider>
   );
