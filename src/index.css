@@ -90,18 +90,7 @@ button:hover,
   z-index: -1;
   }
 
-.drum-pad:active:before,
-.q-red:before,
-.w-orange::before,
-.e-yellow::before,
-.a-green::before,
-.s-blue::before,
-.d-indigo::before,
-.z-purple::before,
-.x-pink::before,
-.c-fuchsia::before {
-  top: 125px;
-}
+
 
 
 .drum-pad:nth-child(1):before{

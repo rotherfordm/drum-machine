@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { VolumeBar } from "./components/VolumeBar";
 import tiles from "./components/constants/tiles";
 import Elements from "./components/constants/elements";
-import { Tile } from "./components/Tile";
+import { Pad, Key } from "./components/Tile";
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './components/constants/global';
 import  Toggle  from './components/Toggle';
@@ -115,24 +115,40 @@ const App = () => {
 
         {/* Drum keys */}
         <div className="drum-keys">
-          {tiles.map((item, index) => {
-            return (
-              <Tile
+        {mode === 'drum' ?
+          tiles.map((item, index) => {
+             <Pad
                 key={index}
-                id={item.id}
+                id={item.idDrum}
                 charKey={charKey}
                 colorString={item.colorString}
-                display={item.displayText}
+                display={item.displayPadText}
                 setDisplayText={setDisplayText}
                 pressed={pressed}
                 keyChar={item.keyChar}
-                audioSource={item.audioSource}
+                audioSource={item.audioSourceDrum}
                 isRecording={isRecording}
                 session={session}
                 setSession={setSession}
               />
-            );
-          })}
+          }): mode === 'piano' ?
+            tiles.map((item, index) => {
+            <Key 
+              key={index}
+              id={item.idPiano}
+              charKey={charKey}
+              colorString={item.colorString}
+              display={item.displayKeyText}
+              setDisplayText={setDisplayText}
+              pressed={pressed}
+              keyChar={item.keyChar}
+              audioSource={item.audioSourcePiano}
+              isRecording={isRecording}
+              session={session}
+              setSession={setSession}/>
+            })
+          : null
+        }
         </div>
         
       </div>

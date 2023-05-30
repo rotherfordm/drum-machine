@@ -18,5 +18,47 @@ body {
     font-size: 1.5rem;
     font-weight: 700;
   }  
+
+.drum-pad:active:before,
+.q-red:before,
+.w-orange::before,
+.e-yellow::before,
+.a-green::before,
+.s-blue::before,
+.d-indigo::before,
+.z-purple::before,
+.x-pink::before,
+.c-fuchsia::before {
+  top: ${({ theme }) => theme.top};
+}
+
+.drum-pad:nth-child(1):before{
+  background: ${({ theme }) => theme.colorQ};
+}
+
+.drum-pad:nth-child(2):before {
+  background: ${({ theme }) => theme.colorW};
+}
+.drum-pad:nth-child(3):before {
+  background: ${({ theme }) => theme.colorE};
+}
+.drum-pad:nth-child(4):before {
+  background: ${({ theme }) => theme.colorA};
+}
+.drum-pad:nth-child(5):before {
+  background: ${({ theme }) => theme.colorS};
+}
+.drum-pad:nth-child(6):before {
+  background: ${({ theme }) => theme.colorD};
+}
+.drum-pad:nth-child(7):before {
+  background: ${({ theme }) => theme.colorZ};
+}
+.drum-pad:nth-child(8):before {
+  background: ${({ theme }) => theme.colorX};
+}
+.drum-pad:nth-child(9):before {
+  background: ${({ theme }) => theme.colorC};
+}
   
 `;

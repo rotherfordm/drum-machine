@@ -17,6 +17,15 @@
     text: '#363537',
     toggleBorder: '#FFF',
     gradient: 'linear-gradient(#39598A, #79D7ED)',
+    colorQ: '#fff',
+    colorW: '#111',
+    colorE: '#fff',
+    colorA: '#111',
+    colorS: '#fff',
+    colorD: '#fff',
+    colorZ: '#111',
+    colorX: '#fff',
+    colorC: '#111',
   }
   
   export const drumMode = {
@@ -24,4 +33,15 @@
     text: '#fff',
     toggleBorder: '#6B8096',
     gradient: 'linear-gradient(#091236, #1E215D)',
+    top: '125px',
+    colorQ: '#e44b50',
+    colorW: '#ff884e',
+    colorE: '#ffca46',
+    colorA: '#95cb51',
+    colorS: '#01b26a',
+    colorD: '#0099c9',
+    colorZ: '#8e61a0',
+    colorX: '#f7799f',
+    colorC: '#FF337D',
+    
   }
