@@ -1,4 +1,4 @@
-export const lightTheme = {
+/*export const lightTheme = {
     body: '#E2E2E2',
     text: '#363537',
     toggleBorder: '#FFF',
@@ -10,6 +10,18 @@ export const lightTheme = {
     text: '#fff',
     toggleBorder: '#6B8096',
     gradient: 'linear-gradient(#091236, #1E215D)',
-  }
+  }*/
 
- 
+  export const pianoMode = {
+    body: '#E2E2E2',
+    text: '#363537',
+    toggleBorder: '#FFF',
+    gradient: 'linear-gradient(#39598A, #79D7ED)',
+  }
+  
+  export const drumMode = {
+    body: '#111',
+    text: '#fff',
+    toggleBorder: '#6B8096',
+    gradient: 'linear-gradient(#091236, #1E215D)',
+  }

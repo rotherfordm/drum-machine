@@ -6,7 +6,7 @@ import { Tile } from "./components/Tile";
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './components/constants/global';
 import  Toggle  from './components/Toggle';
-import { darkTheme, lightTheme } from "./components/constants/theme";
+import { darkTheme, lightTheme, drumMode, pianoMode } from "./components/constants/theme";
 import Buttons from "./components/Buttons";
 
 const elements = Elements();
@@ -20,24 +20,41 @@ const App = () => {
   const [charKey, setCharKey] = useState("");
   const [volume, setVolume] = useState(25);
   const [session, setSession] = useState([]);
-  const [theme, setTheme] = useState('light');
+  const [mode, setMode] = useState('drum');
+  //const [theme, setTheme] = useState('light');
 
-  const toggleTheme = () => {
-    // if the theme is not light, then set it to dark
+  /*const toggleTheme = () => {
+    // if the theme is not light then set it to dark
     if (theme === 'light') {
       setTheme('dark');
     // otherwise, it should be light
     } else {
       setTheme('light');
     }
+  }*/
+
+  const toggleMode = () => {
+    // if the theme is not drum, then set it to piano
+    if (mode === 'piano') {
+      setMode('drum');
+    // otherwise, it should be piano
+    } else {
+      setMode('piano');
+    }
   }
 
   return (
-    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+    <ThemeProvider 
+    /*theme={theme === 'light' ? lightTheme : darkTheme}*/
+    theme={mode === 'drum' ? drumMode : pianoMode}
+  >
       <GlobalStyles />
       {/* Toggle Theme */}
       <div>
-        <Toggle className="toggle" theme={theme} toggleTheme={toggleTheme} />
+        <Toggle 
+        className="toggle" 
+        /*theme={theme} toggleTheme={toggleTheme} */
+        mode={mode} toggleMode={toggleMode}/>
         </div>
     <div
       onKeyDown={(e) => {
