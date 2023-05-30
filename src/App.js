@@ -123,8 +123,8 @@ const App = () => {
 
         {/* Drum keys */}
         <div className="drum-keys">
-        {mode === 'drum' ?
-          tiles.map((item, index) => {
+        {tiles.map((item, index) => {
+            mode === 'drum' ? (
              <Pad
                 key={index}
                 id={item.idDrum}
@@ -139,8 +139,8 @@ const App = () => {
                 session={session}
                 setSession={setSession}
               />
-          }): mode === 'piano' ?
-            tiles.map((item, index) => {
+              )
+           : mode === 'piano' ? (
             <Key 
               key={index}
               id={item.idPiano}
@@ -154,9 +154,9 @@ const App = () => {
               isRecording={isRecording}
               session={session}
               setSession={setSession}/>
-            })
+            )
           : null
-        }
+        })}
         </div>
         
       </div>

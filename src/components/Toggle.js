@@ -31,7 +31,7 @@ const Toggle = ({ mode, toggleMode }) => {
 };
 
 Toggle.propTypes = {
-  Mode: string.isRequired,
+  mode: string.isRequired,
   toggleMode: func.isRequired,
 };
 
