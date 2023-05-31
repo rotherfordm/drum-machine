@@ -19,6 +19,14 @@ body {
     font-weight: 700;
   }  
 
+  .drum-keys {
+    display: 'grid';
+    grid-template-columns: ${({ theme }) => theme.template};
+    grid-gap: ${({ theme }) => theme.gap};
+    margin-bottom: calc(var(--gap) * 4);
+  }
+  
+
 .drum-pad:active:before,
 .q-red:before,
 .w-orange::before,
@@ -33,7 +41,7 @@ body {
 }
 
 .drum-pad:nth-child(1):before{
-  background: ${({ theme }) => theme.colorQ};
+  background: ${({ theme }) => theme.colorQ}
 }
 
 .drum-pad:nth-child(2):before {
@@ -60,5 +68,66 @@ body {
 .drum-pad:nth-child(9):before {
   background: ${({ theme }) => theme.colorC};
 }
-  
+
+#do, 
+#re, 
+#mi, 
+#far, 
+#sol {
+  width: calc((var(--drum-machine-width) - 4 * var(--gap)) / 5);
+  height: 300px;
+  z-index: 0;
+  display: inline-block;
+  gap: none !important;
+  position: relative;
+  background: #fff;
+}
+
+#do-sharp, 
+#re-sharp, 
+#fa-sharp, 
+#sol-sharp {
+  width: var(--drum-pad-width);
+  height: 170px;
+  z-index: 1;
+  display: inline-block;
+  gap: none !important;
+  position: relative;
+  background: #111;
+  color: #111;
+}
+
+
+#do-sharp {
+  left: 16px;
+}
+
+#re {
+  right: 12px;
+}
+
+#re-sharp {
+  left: 5px;
+}
+
+#mi {
+  right: 24px;
+}
+
+#far {
+  left: 20px;
+}
+
+#fa-sharp {
+  left: 34px;
+}
+
+#sol {
+  left: 7px;
+}
+
+#sol-sharp {
+  left: 23px;
+  width: calc(var(--drum-pad-width) / 2)
+}
 `;

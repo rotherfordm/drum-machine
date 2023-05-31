@@ -1,7 +1,7 @@
 export default [
   {
     idDrum: "heater-1",
-    idPiano: "",
+    idPiano: "do",
     colorString: "red",
     displayPadText: "Heater One",
     displayKeyText: '',
@@ -11,7 +11,7 @@ export default [
   },
   {
     idDrum: "heater-2",
-    idPiano: "",
+    idPiano: "do-sharp",
     colorString: "orange",
     displayPadText: "Heater Two",
     displayKeyText: '',
@@ -21,7 +21,7 @@ export default [
   },
   {
     idDrum: "heater-3",
-    idPiano: "",
+    idPiano: "re",
     colorString: "yellow",
     displayPadText: "Heater Three",
     displayKeyText: '',
@@ -31,7 +31,7 @@ export default [
   },
   {
     idDrum: "heater-4",
-    idPiano: "",
+    idPiano: "re-sharp",
     colorString: "green",
     displayPadText: "Heater Four",
     displayKeyText: '',
@@ -41,7 +41,7 @@ export default [
   },
   {
     idDrum: "clap",
-    idPiano: "",
+    idPiano: "mi",
     colorString: "blue",
     displayPadText: "Clap",
     displayKeyText: '',
@@ -51,7 +51,7 @@ export default [
   },
   {
     idDrum: "open-hh",
-    idPiano: "",
+    idPiano: "far",
     colorString: "indigo",
     displayPadText: "Open HH",
     displayKeyText: '',
@@ -61,7 +61,7 @@ export default [
   },
   {
     idDrum: "kick-n-hat",
-    idPiano: "",
+    idPiano: "fa-sharp",
     colorString: "purple",
     displayPadText: `Kick'N'Hat`,
     displayKeyText: '',
@@ -71,7 +71,7 @@ export default [
   },
   {
     idDrum: "kick",
-    idPiano: "",
+    idPiano: "sol",
     colorString: "pink",
     displayPadText: "Kick",
     displayKeyText: '',
@@ -81,7 +81,7 @@ export default [
   },
   {
     idDrum: "closed-hh",
-    idPiano: "",
+    idPiano: "sol-sharp",
     colorString: "fuchsia",
     displayPadText: "Closed HH",
     displayKeyText: '',

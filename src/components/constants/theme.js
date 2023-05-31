@@ -17,15 +17,16 @@
     text: '#363537',
     toggleBorder: '#FFF',
     gradient: 'linear-gradient(#39598A, #79D7ED)',
-    colorQ: '#fff',
-    colorW: '#111',
-    colorE: '#fff',
-    colorA: '#111',
-    colorS: '#fff',
-    colorD: '#fff',
-    colorZ: '#111',
-    colorX: '#fff',
-    colorC: '#111',
+    colorQ: 'transparent',
+    colorW: 'transparent',
+    colorE: 'transparent',
+    colorA: 'transparent',
+    colorS: 'transparent',
+    colorD: 'transparent',
+    colorZ: 'transparent',
+    colorX: 'transparent',
+    colorC: 'transparent',
+    
   }
   
   export const drumMode = {
@@ -43,5 +44,7 @@
     colorZ: '#8e61a0',
     colorX: '#f7799f',
     colorC: '#FF337D',
-    
+    width: 'var(--drum-pad-width)',
+    gap: 'var(--gap)',
+    template: 'repeat(auto-fill, var(--drum-pad-width))'
   }

@@ -15,7 +15,7 @@ export const Pad = (props) => {
   return (
     <button
       id={props.id}
-      className={`drum-pad ${props.charKey}-${props.colorString} ${props.pressed}`}
+      className={`drum-pad ${props.charKey}-${props.colorString} ${props.pressed} ${props.keyChar}`}
       name={props.name}
       key={props.key}
       session={props.session}
@@ -42,7 +42,7 @@ export const Key = (props) => {
   return (
     <button
       id={props.id}
-      className={`drum-pad ${props.charKey}-${props.colorString} ${props.pressed}`}
+      className={`drum-pad ${props.charKey}-${props.colorString} ${props.pressed} ${props.keyChar}`}
       name={props.name}
       key={props.key}
       session={props.session}

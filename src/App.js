@@ -45,6 +45,7 @@ const App = () => {
       // otherwise, it should be piano
     } else {
       setMode("piano");
+      setDisplayText("")
     }
   };
 
@@ -68,13 +69,20 @@ const App = () => {
         onKeyDown={(e) => {
           const item = elements.find((x) => x.key === e.key.toLowerCase());
           if (item) {
-            document.querySelector('.' + item.id).play();
+            if(mode === 'drum') {
+             document.querySelector('#' + item.idDrum).play()
+            } else if (mode === 'piano') {
+              document.querySelector('#' + item.key).play()
+            };
             setCharKey(item.color);
             setPressed("enabled");
             if (isRecording) {
               setSession([...session, item.key]);
             } else {
-              setDisplayText(item.displayText);
+              setDisplayText(item.displayText)
+              if (mode === 'piano') {
+                setDisplayText("")
+              };
             }
           }
         }}
