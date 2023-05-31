@@ -26,7 +26,10 @@
     colorZ: 'transparent',
     colorX: 'transparent',
     colorC: 'transparent',
-    
+    opacity: 'none',
+    fontFamily: 'Abril Fatface',
+    fontSize: '2rem',
+    background: '#f3d6e0',
   }
   
   export const drumMode = {
@@ -46,5 +49,9 @@
     colorC: '#FF337D',
     width: 'var(--drum-pad-width)',
     gap: 'var(--gap)',
-    template: 'repeat(auto-fill, var(--drum-pad-width))'
+    template: 'repeat(auto-fill, var(--drum-pad-width))',
+    opacity: '80%',
+    fontFamily: 'Roboto Condensed',
+    fontSize: '1.2rem',
+    background: '#3b0f1e',
   }

@@ -23,7 +23,9 @@ Toggle.propTypes = {
 const Toggle = ({ mode, toggleMode }) => {
   const isPiano = mode === "piano";
   return (
-    <ToggleContainer pianoMode={isPiano} onClick={toggleMode}>
+    <ToggleContainer 
+    className="toggle"
+     pianoMode={isPiano} onClick={toggleMode}>
       <PianoIcon />
       <DrumIcon />
     </ToggleContainer>

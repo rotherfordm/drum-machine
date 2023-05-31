@@ -57,13 +57,13 @@ const App = () => {
     >
       <GlobalStyles />
       {/* Toggle Theme */}
-      <div>
+      <div class="toggleBox">
         <Toggle
-          className="toggle"
           /*theme={theme} toggleTheme={toggleTheme} */
           mode={mode}
           toggleMode={toggleMode}
         />
+      <div className="hide">Try Me</div>
       </div>
       <div
         onKeyDown={(e) => {
@@ -92,15 +92,17 @@ const App = () => {
         }}
       >
         <div id="drum-machine">
-          {isRecording
+          <span className="display">
+            {isRecording
             ? "Recording"
             : isPlaying
             ? "Playing"
             : "Start Making Sound"}
-          <div className="flex">
+            </span>
             {/* Display */}
-            <div className="toolbar" id="display">
-              {displayText}
+            <div className="flex">
+            <div className="toolbar display" id="display">
+              {displayText} 
             </div>
             {/* Buttons */}
             <br></br>

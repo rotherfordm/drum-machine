@@ -6,13 +6,13 @@ html {
 
 .flex {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   width: var(--drum-machine-width)
 }
 
 .range {
-  width: 400px;
+  width: 150px;
   height: 15px;
   -webkit-appearance: none;
   background: #444444;
@@ -34,7 +34,7 @@ html {
   box-shadow: -407px 0 0 400px #007e05;
 }
 
-button:hover,
+
 .range::-webkit-slider-thumb:hover {
   opacity: 80%;
 }
@@ -92,7 +92,6 @@ button:hover,
 
 
 
-
 .drum-pad:nth-child(1):before{
   background: #e44b50;
 }
@@ -142,7 +141,3 @@ button:hover,
   width: 150px;
 }
 
-.toggle {
-  display: flex;
-  align-items: flex-start;
-}

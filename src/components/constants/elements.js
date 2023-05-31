@@ -40,6 +40,10 @@ const Elements = () => {
       color: "e",
     },
     {
+      key: "r",
+      color: "r"
+    },
+    {
       object: heaterFour,
       class: "green-slider",
       displayText: "Heater Four",
@@ -65,6 +69,10 @@ const Elements = () => {
       mode: "drum",
       key: "d",
       color: "d",
+    },
+    {
+      key: "f",
+      color: "f"
     },
     {
       object: kickNHat,
@@ -93,6 +101,10 @@ const Elements = () => {
       key: "c",
       color: "c",
     },
+    {
+      key: "v",
+      color: "v"
+    }
   ];
 };
 

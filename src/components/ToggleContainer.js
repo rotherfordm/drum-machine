@@ -14,19 +14,19 @@ import styled from "styled-components";
   overflow: hidden;
   padding: 0;
   position: absolute;
-  top: 50px;
-  right: 10px;
+  top: 100px;
+  //left: 507px;
   //width: 4.5rem;
   //height: 2.6rem;
-  width: 2.2em;
-  height: 2.2em;
+  width: 2.5rem;
+  height: 2.5rem;
   
-
+  
   svg {
     //height: auto
-    height: 2em;
+    height: 2.5rem;
     //width: 1.3rem;
-    width: 2em;
+    width: 2.5rem;
     transition: all 0.3s linear;
     
     // sun icon
