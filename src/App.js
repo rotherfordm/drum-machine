@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { VolumeBar } from "./components/VolumeBar";
-import tiles from "./components/constants/tiles";
+import {drum, piano} from "./components/constants/tiles";
 import Elements from "./components/constants/elements";
 import { Pad, Key } from "./components/Tile";
 import { ThemeProvider } from "styled-components";
@@ -138,7 +138,7 @@ const App = () => {
         {/* Drum keys */}
         <div className="drum-keys">
           {mode === "drum"
-            ? tiles.map((item, index) => {
+            ? drum.map((item, index) => {
                 return (
                   <Pad
                     mode={mode}
@@ -157,7 +157,7 @@ const App = () => {
                   />
                 );
               })
-            : tiles.map((item, index) => {
+            : piano.map((item, index) => {
                 return (
                   <Key
                     mode={mode}

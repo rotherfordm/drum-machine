@@ -1,92 +1,153 @@
-export default [
+
+export const drum = [
   {
     idDrum: "heater-1",
-    idPiano: "do",
     colorString: "red",
     displayPadText: "Heater One",
-    displayKeyText: '',
     keyChar: "Q",
     audioSourceDrum: "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3",
-    audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/040.wav"
   },
   {
     idDrum: "heater-2",
-    idPiano: "do-sharp",
     colorString: "orange",
     displayPadText: "Heater Two",
-    displayKeyText: '',
     keyChar: "W",
     audioSourceDrum: "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3",
-    audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/041.wav"
   },
   {
     idDrum: "heater-3",
-    idPiano: "re",
     colorString: "yellow",
     displayPadText: "Heater Three",
-    displayKeyText: '',
     keyChar: "E",
     audioSourceDrum: "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3",
-    audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/042.wav"
   },
   {
     idDrum: "heater-4",
-    idPiano: "re-sharp",
     colorString: "green",
     displayPadText: "Heater Four",
-    displayKeyText: '',
     keyChar: "A",
     audioSourceDrum: "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3",
-    audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/043.wav"
   },
   {
     idDrum: "clap",
-    idPiano: "mi",
     colorString: "blue",
     displayPadText: "Clap",
-    displayKeyText: '',
     keyChar: "S",
     audioSourceDrum: "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3",
-    audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/044.wav"
   },
   {
     idDrum: "open-hh",
-    idPiano: "far",
     colorString: "indigo",
     displayPadText: "Open HH",
-    displayKeyText: '',
     keyChar: "D",
     audioSourceDrum: "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3",
-    audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/045.wav"
   },
   {
     idDrum: "kick-n-hat",
-    idPiano: "fa-sharp",
     colorString: "purple",
     displayPadText: `Kick'N'Hat`,
-    displayKeyText: '',
     keyChar: "Z",
     audioSourceDrum: "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3",
-    audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/046.wav"
   },
   {
     idDrum: "kick",
-    idPiano: "sol",
     colorString: "pink",
     displayPadText: "Kick",
-    displayKeyText: '',
     keyChar: "X",
     audioSourceDrum: "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3",
-    audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/047.wav"
   },
   {
     idDrum: "closed-hh",
-    idPiano: "sol-sharp",
     colorString: "fuchsia",
     displayPadText: "Closed HH",
-    displayKeyText: '',
     keyChar: "C",
     audioSourceDrum: "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3",
+  },
+];
+
+export const piano = [
+  {
+    idPiano: "do",
+    colorString: "red",
+    displayKeyText: '',
+    keyChar: "Q",
+    audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/040.wav"
+  },
+  {
+    idPiano: "do-sharp",
+    colorString: "orange",
+    displayKeyText: '',
+    keyChar: "W",
+    audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/041.wav"
+  },
+  {
+    idPiano: "re",
+    colorString: "yellow",
+    displayKeyText: '',
+    keyChar: "E",
+    audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/042.wav"
+  },
+  {
+    idPiano: "re-sharp",
+    colorString: "green",
+    displayKeyText: '',
+    keyChar: "R",
+    audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/043.wav"
+  },
+  {
+    idPiano: "mi",
+    colorString: "blue",
+    displayKeyText: '',
+    keyChar: "A",
+    audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/044.wav"
+  },
+  {
+    idPiano: "far",
+    colorString: "indigo",
+    displayKeyText: '',
+    keyChar: "S",
+    audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/045.wav"
+  },
+  {
+    idPiano: "fa-sharp",
+    colorString: "purple",
+    displayKeyText: '',
+    keyChar: "D",
+    audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/046.wav"
+  },
+  {
+    idPiano: "sol",
+    colorString: "pink",
+    displayKeyText: '',
+    keyChar: "F",
+    audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/047.wav"
+  },
+  {
+    idPiano: "sol-sharp",
+    colorString: "fuchsia",
+    displayKeyText: '',
+    keyChar: "Z",
     audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/048.wav"
+  },
+  {
+    idPiano: "la",
+    colorString: "fuchsia",
+    displayKeyText: '',
+    keyChar: "X",
+    audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/049.wav"
+  },
+  {
+    idPiano: "la-sharp",
+    colorString: "fuchsia",
+    displayKeyText: '',
+    keyChar: "C",
+    audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/050.wav"
+  },
+  {
+    idPiano: "ti",
+    colorString: "fuchsia",
+    displayKeyText: '',
+    keyChar: "V",
+    audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/051.wav"
   },
 ];

@@ -73,8 +73,10 @@ body {
 #re, 
 #mi, 
 #far, 
-#sol {
-  width: calc((var(--drum-machine-width) - 4 * var(--gap)) / 5);
+#sol,
+#la,
+#ti {
+  width: calc((var(--drum-machine-width) - 5 * var(--gap)) / 7);
   height: 300px;
   z-index: 0;
   display: inline-block;
@@ -86,8 +88,9 @@ body {
 #do-sharp, 
 #re-sharp, 
 #fa-sharp, 
-#sol-sharp {
-  width: var(--drum-pad-width);
+#sol-sharp,
+#la-sharp {
+  width: calc(var(--drum-pad-width - 10));
   height: 170px;
   z-index: 1;
   display: inline-block;
@@ -99,35 +102,49 @@ body {
 
 
 #do-sharp {
-  left: 16px;
-}
-
-#re {
   right: 12px;
 }
 
+#re {
+  right: 41px;
+}
+
 #re-sharp {
-  left: 5px;
+  right: 53px;
 }
 
 #mi {
-  right: 24px;
+  right: 82px;
 }
 
 #far {
-  left: 20px;
+  right: 67.5px;
 }
 
 #fa-sharp {
-  left: 34px;
+  right: 79px;
 }
 
 #sol {
-  left: 7px;
+  right: 109px;
 }
 
 #sol-sharp {
-  left: 23px;
-  width: calc(var(--drum-pad-width) / 2)
+  right: 122px;
+}
+
+#la {
+  bottom: 301px;
+  left: 351px;
+}
+
+#la-sharp {
+  bottom: 301px;
+  left: 340px;
+}
+
+#ti {
+  bottom: 301px;
+  left: 310px;
 }
 `;
