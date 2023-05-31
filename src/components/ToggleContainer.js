@@ -38,7 +38,7 @@ import styled from "styled-components";
     // moon icon
     &:nth-child(2) {
       //z-index: 2;
-      transform: ${({ pianoMode }) => !pianoMode ? 'translateY(-50px)' : 'translateY(0)'} ;
+      transform: ${({ pianoMode }) => !pianoMode ? 'translateY(-45px)' : 'translateY(0)'} ;
     }
   }
 `;
