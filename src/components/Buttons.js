@@ -28,23 +28,6 @@ export const DrumButtons = (props) => {
   const replayRecording = () => {
     props.setIsRecording(false);
     props.setIsPlaying(true);
-    for (var index = 0; index < props.session.length; index++) {
-      let item = props.session[index].toUpperCase();
-      setTimeout(() => {
-        document.getElementById(item).play();
-        props.setCharKey(item.toLowerCase());
-        props.setPressed("enabled");
-        if (index === props.session.length - 1) {
-          setTimeout(() => {
-            props.setCharKey("");
-            props.setPressed("disabled");
-            props.setDisplayText("");
-            props.setIsPlaying(false);
-          }, 450 * index);
-        }
-      }, 450 * index);
-    }
-    props.setSession([]);
   };
 
   return (
@@ -67,7 +50,6 @@ export const PianoButtons = (props) => {
     props.setIsPlaying(true);
     props.setSession([]);
     let randomTune = tunes[Math.floor(Math.random() * (tunes.length - 0) + 0)];
-    console.log("randomTune", randomTune);
     props.setSession([...props.session, ...randomTune.notes]);
     props.setDisplayText(randomTune.title);
   };

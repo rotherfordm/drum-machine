@@ -1,13 +1,9 @@
 import React from "react";
-import {drum} from "./constants/tiles";
-
-
+import { drum } from "./constants/tiles";
 
 export const volumeControl = (globalVolumeVal) => {
-
   for (let index in drum) {
-    document.getElementById(drum[index].keyChar).volume =
-      globalVolumeVal / 100;
+    document.getElementById(drum[index].keyChar).volume = globalVolumeVal / 100;
   }
 };
 

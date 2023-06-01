@@ -39,29 +39,43 @@ const App = () => {
   }*/
 
   useEffect(() => {
-    if (session.length > 0) {
+    if (session.length > 0 && isPlaying) {
+      let delay = 200;
+      if (mode === "drum") {
+        delay = 450;
+      }
       setIsRecording(false);
       setIsPlaying(true);
       for (var index = 0; index < session.length; index++) {
-        let item = session[index].toUpperCase();
-        setTimeout(() => {
-          document.getElementById(item.toLowerCase()).play();
-          setCharKey(item.toLowerCase());
-          setPressed("enabled");
-          if (index === session.length - 1) {
-            console.log("reset");
-            setTimeout(() => {
-              setCharKey("");
-              setPressed("disabled");
-              setDisplayText("");
-              setIsPlaying(false);
-            }, 450 * index);
-          }
-        }, 450 * index);
+        let item = session[index];
+        try {
+          setTimeout(() => {
+            if (mode === "drum") {
+              document.getElementById(item.toUpperCase()).play();
+              setCharKey(item.toUpperCase());
+            } else if (mode === "piano") {
+              document.getElementById(item.toLowerCase()).play();
+              setCharKey(item.toLowerCase());
+            }
+            setPressed("enabled");
+            if (index === session.length - 1) {
+              setTimeout(() => {
+                setCharKey("");
+                setPressed("disabled");
+                setDisplayText("");
+                setIsPlaying(false);
+              }, delay * index);
+            }
+          }, delay * index);
+        } catch (e) {
+          console.log(e);
+        } finally {
+          setIsPlaying(false);
+          setSession([]);
+        }
       }
-      setSession([]);
     }
-  }, [session]);
+  }, [session, isPlaying]);
 
   return (
     <ThemeProvider
