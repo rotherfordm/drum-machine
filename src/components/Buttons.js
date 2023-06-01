@@ -65,30 +65,44 @@ export const DrumButtons = (props) => {
 export const PianoButtons = (props) => {
   const playTune = () => {
     props.setIsPlaying(true);
-    props.setSession([]);
-    console.log(props.session)
     let randomTune = tunes[Math.floor(Math.random() * (tunes.length - 0) + 0)];
     console.log(randomTune);
-    props.setSession([...props.session,randomTune])
-    console.log(props.session);
     let randomTuneName = randomTune[0];
     props.setDisplayText(randomTuneName);
-    for (var index = 1; index < props.session.length; index++) {
-      let item = props.session[index];
+    for (var first = 1; first < randomTune.length; first += 2) {
+      var second = first + 1;
+      let firstNote = randomTune[first];
+      console.log(firstNote)
+      let secondNote = randomTune[second];
+      console.log(secondNote)
       setTimeout(() => {
-        document.getElementById(item.toLowerCase()).play();
-        props.setCharKey(item.toLowerCase());
+        setTimeout(() => {
+        document.getElementById(firstNote.toLowerCase()).play();
+        props.setCharKey(firstNote);
         props.setPressed("enabled");
-        if (index === props.session.length - 1) {
+        if (firstNote === randomTune.length - 1) {
           setTimeout(() => {
             props.setCharKey("");
             props.setPressed("disabled");
             props.setIsRecording(false);
             props.setDisplayText("");
             props.setIsPlaying(false);
-          }, 450 * index);
+          }, 2000 * firstNote);
+        } 600 * firstNote }),
+        document.getElementById(secondNote.toLowerCase()).play();
+        props.setCharKey(secondNote.toLowerCase());
+        props.setPressed("enabled");
+        if (secondNote === randomTune.length - 1) {
+          setTimeout(() => {
+            props.setCharKey("");
+            props.setPressed("disabled");
+            props.setIsRecording(false);
+            props.setDisplayText("");
+            props.setIsPlaying(false);
+          }, 2000 * secondNote);
         }
-      }, 450 * index);
+      },  600 * firstNote);
+      
     }
     props.setSession([]);
 

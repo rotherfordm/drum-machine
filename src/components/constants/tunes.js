@@ -5,7 +5,7 @@ export const tunes = [
     ],
     [
         'Do Re Mi',
-        'q', 'e', 'a', 'q', 'q', 'e', 'a', 'q', 'a', 's', 'f', 'a', 's', 'f'
+        'q', 'e', 'a', 'q', 'e', 'a', 'a', 's', 'f', 'a', 's', 'f'
     ],
     [
         'Old MacDonald Had A Farm', 
