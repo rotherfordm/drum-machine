@@ -125,7 +125,6 @@ const App = () => {
                 />
               </div>
             ) : null}
-
             {mode === "piano" ? (
                 <PianoButtons 
                   setIsPlaying={setIsPlaying}
@@ -139,7 +138,6 @@ const App = () => {
                 />
               )
              : null}
-           
           </div>
       
         {/* Drum keys */}
