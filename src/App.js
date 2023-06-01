@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { VolumeBar } from "./components/VolumeBar";
-import {drum, piano} from "./components/constants/tiles";
+import { drum, piano } from "./components/constants/tiles";
 import Elements from "./components/constants/elements";
 import { Pad, Key } from "./components/Tile";
 import { ThemeProvider } from "styled-components";
@@ -12,7 +12,7 @@ import {
   drumMode,
   pianoMode,
 } from "./components/constants/theme";
-import {DrumButtons, PianoButtons} from "./components/Buttons";
+import { DrumButtons, PianoButtons } from "./components/Buttons";
 
 const elements = Elements();
 
@@ -38,8 +38,33 @@ const App = () => {
     }
   }*/
 
-  
- 
+  useEffect(() => {
+    if (session.length > 0) {
+      setIsRecording(false);
+      setIsPlaying(true);
+      for (var index = 0; index < session.length; index++) {
+        let item = session[index].toUpperCase();
+        setTimeout(() => {
+          document.getElementById(item.toLowerCase()).play();
+          setCharKey(item.toLowerCase());
+          setPressed("enabled");
+          if (index === session.length - 1) {
+            console.log("reset");
+            setTimeout(() => {
+              setCharKey("");
+              setPressed("disabled");
+              setDisplayText("");
+              setIsPlaying(false);
+            }, 450 * index);
+          }
+        }, 450 * index);
+      }
+      setSession([]);
+    }
+  }, [session]);
+
+  console.log("session", session);
+
   return (
     <ThemeProvider
       /*theme={theme === 'light' ? lightTheme : darkTheme}*/
@@ -56,26 +81,26 @@ const App = () => {
           setIsPlaying={setIsPlaying}
           setIsRecording={setIsRecording}
         />
-      <div className="hide">Try Me</div>
+        <div className="hide">Try Me</div>
       </div>
       <div
         onKeyDown={(e) => {
           const item = elements.find((x) => x.key === e.key.toLowerCase());
           if (item) {
-            if(mode === 'drum') {
-             document.querySelector('#' + item.idDrum).play()
-            } else if (mode === 'piano') {
-              document.querySelector('#' + item.key).play()
-            };
+            if (mode === "drum") {
+              document.querySelector("#" + item.idDrum).play();
+            } else if (mode === "piano") {
+              document.querySelector("#" + item.key).play();
+            }
             setCharKey(item.color);
             setPressed("enabled");
             if (isRecording) {
               setSession([...session, item.key]);
             } else {
-              setDisplayText(item.displayText)
-              if (mode === 'piano') {
-                setDisplayText("")
-              };
+              setDisplayText(item.displayText);
+              if (mode === "piano") {
+                setDisplayText("");
+              }
             }
           }
         }}
@@ -87,15 +112,15 @@ const App = () => {
         <div id="drum-machine">
           <span className="display">
             {isRecording
-            ? "Recording"
-            : isPlaying
-            ? "Playing"
-            : "Start Making Sound"}
-            </span>
-            {/* Display */}
-            <div className="flex">
+              ? "Recording"
+              : isPlaying
+              ? "Playing"
+              : "Start Making Sound"}
+          </span>
+          {/* Display */}
+          <div className="flex">
             <div className="toolbar display" id="display">
-              {displayText} 
+              {displayText}
             </div>
             {/* Buttons */}
             <br></br>
@@ -126,63 +151,62 @@ const App = () => {
               </div>
             ) : null}
             {mode === "piano" ? (
-                <PianoButtons 
-                  setIsPlaying={setIsPlaying}
-                  isPlaying={isPlaying}
-                  setSession={setSession}
-                  session={session}
-                  setDisplayText={setDisplayText}
-                  setPressed={setPressed}
-                  pressed={pressed}
-                  setCharKey={setCharKey}
-                />
-              )
-             : null}
+              <PianoButtons
+                setIsPlaying={setIsPlaying}
+                isPlaying={isPlaying}
+                setSession={setSession}
+                session={session}
+                setDisplayText={setDisplayText}
+                setPressed={setPressed}
+                pressed={pressed}
+                setCharKey={setCharKey}
+              />
+            ) : null}
           </div>
-      
-        {/* Drum keys */}
-        <div className="drum-keys">
-          {mode === "drum"
-            ? drum.map((item, index) => {
-                return (
-                  <Pad
-                    mode={mode}
-                    key={index}
-                    id={item.idDrum}
-                    charKey={charKey}
-                    colorString={item.colorString}
-                    display={item.displayPadText}
-                    setDisplayText={setDisplayText}
-                    pressed={pressed}
-                    keyChar={item.keyChar}
-                    audioSource={item.audioSourceDrum}
-                    isRecording={isRecording}
-                    session={session}
-                    setSession={setSession}
-                  />
-                );
-              })
-            : piano.map((item, index) => {
-                return (
-                  <Key
-                    mode={mode}
-                    key={index}
-                    id={item.idPiano}
-                    charKey={charKey}
-                    colorString={item.colorString}
-                    display={item.displayKeyText}
-                    setDisplayText={setDisplayText}
-                    pressed={pressed}
-                    keyChar={item.keyChar}
-                    audioSource={item.audioSourcePiano}
-                    isRecording={isRecording}
-                    session={session}
-                    setSession={setSession}
-                  />
-                );
-              })}
+
+          {/* Drum keys */}
+          <div className="drum-keys">
+            {mode === "drum"
+              ? drum.map((item, index) => {
+                  return (
+                    <Pad
+                      mode={mode}
+                      key={index}
+                      id={item.idDrum}
+                      charKey={charKey}
+                      colorString={item.colorString}
+                      display={item.displayPadText}
+                      setDisplayText={setDisplayText}
+                      pressed={pressed}
+                      keyChar={item.keyChar}
+                      audioSource={item.audioSourceDrum}
+                      isRecording={isRecording}
+                      session={session}
+                      setSession={setSession}
+                    />
+                  );
+                })
+              : piano.map((item, index) => {
+                  return (
+                    <Key
+                      mode={mode}
+                      key={index}
+                      id={item.idPiano}
+                      charKey={charKey}
+                      colorString={item.colorString}
+                      display={item.displayKeyText}
+                      setDisplayText={setDisplayText}
+                      pressed={pressed}
+                      keyChar={item.keyChar}
+                      audioSource={item.audioSourcePiano}
+                      isRecording={isRecording}
+                      session={session}
+                      setSession={setSession}
+                    />
+                  );
+                })}
+          </div>
         </div>
-      </div>
       </div>
     </ThemeProvider>
   );
