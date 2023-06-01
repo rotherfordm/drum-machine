@@ -46,33 +46,28 @@ const App = () => {
       }
       setIsRecording(false);
       setIsPlaying(true);
-      for (var index = 0; index < session.length; index++) {
+      for (let index = 0; index < session.length; ++index) {
         let item = session[index];
-        try {
-          setTimeout(() => {
-            if (mode === "drum") {
-              document.getElementById(item.toUpperCase()).play();
-              setCharKey(item.toUpperCase());
-            } else if (mode === "piano") {
-              document.getElementById(item.toLowerCase()).play();
-              setCharKey(item.toLowerCase());
-            }
-            setPressed("enabled");
-            if (index === session.length - 1) {
-              setTimeout(() => {
-                setCharKey("");
-                setPressed("disabled");
-                setDisplayText("");
-                setIsPlaying(false);
-              }, delay * index);
-            }
-          }, delay * index);
-        } catch (e) {
-          console.log(e);
-        } finally {
-          setIsPlaying(false);
-          setSession([]);
-        }
+        setTimeout(() => {
+          if (mode === "drum") {
+            document.getElementById(item.toUpperCase()).play();
+            setCharKey(item.toUpperCase());
+          } else if (mode === "piano") {
+            document.getElementById(item.toLowerCase()).play();
+            setCharKey(item.toLowerCase());
+          }
+          setPressed("enabled");
+          console.log(index, session.length - 1);
+          if (index === session.length - 1) {
+            setTimeout(() => {
+              setCharKey("");
+              setPressed("disabled");
+              setDisplayText("");
+              setIsPlaying(false);
+              setSession([]);
+            }, delay * index);
+          }
+        }, delay * index);
       }
     }
   }, [session, isPlaying]);
@@ -90,6 +85,7 @@ const App = () => {
           mode={mode}
           setMode={setMode}
           setDisplayText={setDisplayText}
+          isPlaying={isPlaying}
           setIsPlaying={setIsPlaying}
           setIsRecording={setIsRecording}
         />
@@ -97,6 +93,9 @@ const App = () => {
       </div>
       <div
         onKeyDown={(e) => {
+          console.log("e", e.metaKey);
+          console.log("e", e.ctrlKey);
+          console.log("e", e.code);
           const item = elements.find((x) => x.key === e.key.toLowerCase());
           if (item) {
             if (mode === "drum") {
