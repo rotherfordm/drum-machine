@@ -23,7 +23,7 @@ Toggle.propTypes = {
 const Toggle = (props) => {
   /*setTimeout(() => {
   props.setIsPlaying(false);
-  props.setIsRecording(false);}, 450)*/  
+  props.setIsRecording(false);}, 450)*/
   const toggleMode = () => {
     // if the theme is not drum, then set it to piano
     if (props.mode === "piano") {
@@ -31,16 +31,19 @@ const Toggle = (props) => {
       // otherwise, it should be piano
     } else {
       props.setMode("piano");
-      props.setDisplayText("")
+      props.setDisplayText("");
     }
   };
 
+  console.log("props.isPlaying", props.isPlaying);
   const isPiano = props.mode === "piano";
   return (
-    <ToggleContainer 
-     className="toggle"
-     pianoMode={isPiano} 
-     onClick={toggleMode}>
+    <ToggleContainer
+      disabled={props.isPlaying}
+      className="toggle"
+      pianoMode={isPiano}
+      onClick={toggleMode}
+    >
       <PianoIcon />
       <DrumIcon />
     </ToggleContainer>
