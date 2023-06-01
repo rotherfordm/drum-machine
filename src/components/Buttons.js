@@ -65,10 +65,14 @@ export const DrumButtons = (props) => {
 export const PianoButtons = (props) => {
   const playTune = () => {
     props.setIsPlaying(true);
-    props.setSession(tunes)
-    let randomTunes = props.session[Math.floor(Math.random() * (props.session.length - 0) + 0)]
-    console.log(randomTunes);
-    props.setDisplayText(randomTunes)
+    props.setSession([]);
+    console.log(props.session)
+    let randomTune = tunes[Math.floor(Math.random() * (tunes.length - 0) + 0)];
+    console.log(randomTune);
+    props.setSession([...props.session,randomTune])
+    console.log(props.session);
+    let randomTuneName = randomTune[0];
+    props.setDisplayText(randomTuneName);
     for (var index = 1; index < props.session.length; index++) {
       let item = props.session[index];
       setTimeout(() => {
