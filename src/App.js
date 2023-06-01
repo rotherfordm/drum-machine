@@ -63,8 +63,6 @@ const App = () => {
     }
   }, [session]);
 
-  console.log("session", session);
-
   return (
     <ThemeProvider
       /*theme={theme === 'light' ? lightTheme : darkTheme}*/
