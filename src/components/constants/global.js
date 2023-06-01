@@ -89,6 +89,12 @@ button:hover {
   gap: none !important;
   position: relative;
   background: #fff;
+  box-shadow:inset 0px -1px 2px rgba(255,255,255,0.4),0 2px 3px rgba(183,183,180,0.4);
+  //box-shadow:inset 0 1px 0px #fff,inset 0 -1px 0px #fff,inset 1px 0px 0px #fff,inset -1px 0px 0px #fff,0 4px 3px rgba(0,0,0,0.7);
+  border:1px solid #ccc;
+  border-radius:0 0 3px 3px;
+  border-width:1px 2px 7px;
+  
 }
 
 #do-sharp, 
@@ -97,15 +103,44 @@ button:hover {
 #sol-sharp,
 #la-sharp {
   width: calc(var(--drum-pad-width - 10));
-  height: 170px;
+  height: 216px;
   z-index: 1;
   display: inline-block;
   gap: none !important;
   position: relative;
   background: #111;
   color: #111;
+  background:-webkit-linear-gradient(-20deg,#333,#000,#333);
+  border-width:1px 2px 7px;
+  border-style:solid;
+  border-color:#666 #222 #111 #555;
+  box-shadow:inset 0px -1px 2px rgba(255,255,255,0.4),0 2px 3px rgba(0,0,0,0.4);
+  border-radius:0 0 2px 2px;
 }
 
+#do:active, 
+#re:active, 
+#mi:active, 
+#far:active, 
+#sol:active,
+#la:active,
+#ti:active {
+  box-shadow:2px 3px 3px rgba(0,0,0,0.4);
+  border-width:2px 5px 0px;
+  border-style:solid;
+  border-color: transparent rgba(0,0,0,0.1) transparent rgba(0,0,0,0.1);
+}
+
+#do-sharp:active, 
+#re-sharp:active, 
+#fa-sharp:active, 
+#sol-sharp:active,
+#la-sharp:active { 
+  border-width:2px 3px 2px 0px;
+  border-style:solid;
+  box-shadow:0,0 1px 0px rgba(0,0,0,0.8),0 2px 2px rgba(0,0,0,0.4),0 -1px 0px #000;
+
+}
 
 #do-sharp {
   right: 12px;
@@ -167,7 +202,7 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 150px;
+  top: 145px;
   color: #C53364;
   opacity: 60%;
   position: absolute;
@@ -181,6 +216,13 @@ button:hover {
   border-radius: 10%;
   background: ${({ theme }) => theme.background};
 }
+
+.piano{
+  -webkit-box-shadow:inset 0 1px 0px #fff,inset 0 -1px 0px #fff,inset 1px 0px 0px #fff,inset -1px 0px 0px #fff,0 4px 3px rgba(0,0,0,0.7);
+  border: none;
+}
+
+
 `;
 
 
