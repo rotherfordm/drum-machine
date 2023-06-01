@@ -1,8 +1,8 @@
 export const tunes = [
-  {
+  /*{
     title: "Full Range",
     notes: ["q", "e", "a", "s", "f", "x", "v"],
-  },
+  },*/
   {
     title: "Do Re Mi",
     notes: [

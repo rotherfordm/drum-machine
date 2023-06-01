@@ -13,8 +13,10 @@ import {
   pianoMode,
 } from "./components/constants/theme";
 import { DrumButtons, PianoButtons } from "./components/Buttons";
+import WorkerPool  from "workerpool";
 
 const elements = Elements();
+const pool = WorkerPool.pool();
 
 const App = () => {
   const [isRecording, setIsRecording] = useState(false);
@@ -38,6 +40,48 @@ const App = () => {
     }
   }*/
 
+  const playNote = (playingMode, delay, item, index, musicSession) => {
+    setTimeout(() => {
+      if (playingMode === "drum") {
+        document.getElementById(item.toUpperCase()).play();
+        setCharKey(item.toUpperCase());
+      } else if (playingMode === "piano") {
+        document.getElementById(item.toLowerCase()).play();
+        setCharKey(item.toLowerCase());
+      }
+      setPressed("enabled");
+      console.log(index, musicSession.length - 1);
+      if (index === musicSession.length - 1) {
+        setTimeout(() => {
+          setCharKey("");
+          setPressed("disabled");
+          setDisplayText("");
+          setIsPlaying(false);
+          setSession([]);
+        }, delay * index);
+      }
+    }, delay * index);
+  }
+
+  useEffect(() => {
+    function add(a, b) {
+      return a + b;
+    }
+    
+    pool
+      .exec(add, [3, 4])
+      .then(function (result) {
+        console.log('result', result); // outputs 7
+      })
+      .catch(function (err) {
+        console.error(err);
+      })
+      .then(function () {
+        pool.terminate(); // terminate all workers when done
+      });
+    
+  },[])
+
   useEffect(() => {
     if (session.length > 0 && isPlaying) {
       let delay = 200;
@@ -48,26 +92,7 @@ const App = () => {
       setIsPlaying(true);
       for (let index = 0; index < session.length; ++index) {
         let item = session[index];
-        setTimeout(() => {
-          if (mode === "drum") {
-            document.getElementById(item.toUpperCase()).play();
-            setCharKey(item.toUpperCase());
-          } else if (mode === "piano") {
-            document.getElementById(item.toLowerCase()).play();
-            setCharKey(item.toLowerCase());
-          }
-          setPressed("enabled");
-          console.log(index, session.length - 1);
-          if (index === session.length - 1) {
-            setTimeout(() => {
-              setCharKey("");
-              setPressed("disabled");
-              setDisplayText("");
-              setIsPlaying(false);
-              setSession([]);
-            }, delay * index);
-          }
-        }, delay * index);
+        playNote(mode, delay, item, index, session)
       }
     }
   }, [session, isPlaying]);
