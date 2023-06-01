@@ -1,7 +1,8 @@
 import React from "react";
 import { volumeControl } from "./Tile";
+import { tunes } from "./constants/tunes"
 
-const Buttons = (props) => {
+export const DrumButtons = (props) => {
   const startRecording = () => {
     props.setIsRecording(!props.isRecording);
     if (props.isRecording) {
@@ -27,7 +28,7 @@ const Buttons = (props) => {
   const replayRecording = () => {
     props.setIsRecording(false);
     props.setIsPlaying(true);
-    for (let index = 0; index < props.session.length; index++) {
+    for (var index = 0; index < props.session.length; index++) {
       let item = props.session[index].toUpperCase();
       setTimeout(() => {
         document.getElementById(item).play();
@@ -37,7 +38,6 @@ const Buttons = (props) => {
           setTimeout(() => {
             props.setCharKey("");
             props.setPressed("disabled");
-            props.setIsRecording(false);
             props.setDisplayText("");
             props.setIsPlaying(false);
           }, 450 * index);
@@ -62,4 +62,38 @@ const Buttons = (props) => {
   )
 };
 
-export default Buttons;
+export const PianoButtons = (props) => {
+  const playTune = () => {
+    props.setIsPlaying(true);
+    props.setSession(tunes)
+    let randomTunes = props.session[Math.floor(Math.random() * (props.session.length - 0) + 0)]
+    console.log(randomTunes);
+    props.setDisplayText(randomTunes)
+    for (var index = 1; index < props.session.length; index++) {
+      let item = props.session[index];
+      setTimeout(() => {
+        document.getElementById(item.toLowerCase()).play();
+        props.setCharKey(item.toLowerCase());
+        props.setPressed("enabled");
+        if (index === props.session.length - 1) {
+          setTimeout(() => {
+            props.setCharKey("");
+            props.setPressed("disabled");
+            props.setIsRecording(false);
+            props.setDisplayText("");
+            props.setIsPlaying(false);
+          }, 450 * index);
+        }
+      }, 450 * index);
+    }
+    props.setSession([]);
+
+
+  }
+
+  return (
+    <button className="toolbar" onClick={playTune}>
+      <i className="fa fa-music"/>
+    </button>
+  )
+}

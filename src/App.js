@@ -12,7 +12,7 @@ import {
   drumMode,
   pianoMode,
 } from "./components/constants/theme";
-import Buttons from "./components/Buttons";
+import {DrumButtons, PianoButtons} from "./components/Buttons";
 
 const elements = Elements();
 
@@ -38,17 +38,7 @@ const App = () => {
     }
   }*/
 
-  const toggleMode = () => {
-    // if the theme is not drum, then set it to piano
-    if (mode === "piano") {
-      setMode("drum");
-      // otherwise, it should be piano
-    } else {
-      setMode("piano");
-      setDisplayText("")
-    }
-  };
-
+  
  
   return (
     <ThemeProvider
@@ -61,7 +51,10 @@ const App = () => {
         <Toggle
           /*theme={theme} toggleTheme={toggleTheme} */
           mode={mode}
-          toggleMode={toggleMode}
+          setMode={setMode}
+          setDisplayText={setDisplayText}
+          setIsPlaying={setIsPlaying}
+          setIsRecording={setIsRecording}
         />
       <div className="hide">Try Me</div>
       </div>
@@ -108,7 +101,7 @@ const App = () => {
             <br></br>
             {mode === "drum" ? (
               <div className="flex">
-                <Buttons
+                <DrumButtons
                   setIsPlaying={setIsPlaying}
                   isPlaying={isPlaying}
                   setIsRecording={setIsRecording}
@@ -133,7 +126,19 @@ const App = () => {
               </div>
             ) : null}
 
-            {mode === "piano" ? <></> : null}
+            {mode === "piano" ? (
+                <PianoButtons 
+                  setIsPlaying={setIsPlaying}
+                  isPlaying={isPlaying}
+                  setSession={setSession}
+                  session={session}
+                  setDisplayText={setDisplayText}
+                  setPressed={setPressed}
+                  pressed={pressed}
+                  setCharKey={setCharKey}
+                />
+              )
+             : null}
            
           </div>
       
