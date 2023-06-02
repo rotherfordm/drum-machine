@@ -45,43 +45,54 @@ const App = () => {
       if (playingMode === "drum") {
         playNoteDocument.getElementById(item.toUpperCase()).play();
         setCharKey(item.toUpperCase());
-      } else if (playingMode === "piano") {
-        playNoteDocument.getElementById(item.toLowerCase()).play();
-        setCharKey(item.toLowerCase());
-      }
-      setPressed("enabled");
-      console.log(index, musicSession.length - 1);
-      if (index === musicSession.length - 1) {
+        if (index === musicSession.length - 1) {
         setTimeout(() => {
           setCharKey("");
-          setPressed("disabled");
           setDisplayText("");
           setIsPlaying(false);
           setSession([]);
         }, delay * index);
       }
-    }, delay * index);
+      } else if (playingMode === "piano") {
+          playNoteDocument.getElementById(item.toLowerCase()).play();
+          setPressed("enabled");
+          console.log()
+          setTimeout(() => {
+          playNoteDocument.getElementById(item.toLowerCase()).pause()
+          playNoteDocument.getElementById(item.toLowerCase()).currentTime = 0
+          }, delay * index); 
+      if (index === musicSession.length - 1) {
+        setTimeout(() => {
+          setCharKey("");
+          setDisplayText("");
+          setIsPlaying(false);
+          setSession([]);
+        }, delay * index);
+      }
+    }}, delay * index);
   }
 
 
   useEffect(() => {
     if (session.length > 0 && isPlaying) {
-      let delay = 200;
+      let delay = 300;
       if (mode === "drum") {
         delay = 450;
       }
       setIsRecording(false);
       setIsPlaying(true);
-      for (let index = 0; index < session.length; ++index) {
+      for (let index = 0; index < session.length; index += 2) {
         let item = session[index];
-        pool
+        playNote(mode, delay, item, index, session, document)
+        console.log(session)
+        /*pool
           .exec(playNote, [mode, delay, item, index, session, document])
           .then(function (result) {
            console.log(result);
           })
           .catch(function (err) {
           console.error(err);
-        });
+        });*/
       }
     }
   }, [session, isPlaying]);
