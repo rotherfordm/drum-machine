@@ -28,6 +28,24 @@ export const DrumButtons = (props) => {
   const replayRecording = () => {
     props.setIsRecording(false);
     props.setIsPlaying(true);
+    for (let index = 0; index < props.session.length; index++) {
+      let item = props.session[index].toUpperCase();
+      setTimeout(() => {
+        document.getElementById(item).play();
+        props.setCharKey(item.toLowerCase());
+        props.setPressed("enabled");
+        if (index === props.session.length - 1) {
+          setTimeout(() => {
+            props.setCharKey("");
+            props.setPressed("disabled");
+            props.setIsRecording(false);
+            props.setDisplayText("");
+            props.setIsPlaying(false);
+          }, 450 * index);
+        }
+      }, 450 * index);
+    }
+    props.setSession([]);
   };
 
   return (
@@ -50,13 +68,39 @@ export const PianoButtons = (props) => {
     props.setIsPlaying(true);
     props.setSession([]);
     let randomTune = tunes[Math.floor(Math.random() * (tunes.length - 0) + 0)];
-    props.setSession([...props.session, ...randomTune.notes]);
-    props.setDisplayText(randomTune.title);
-  };
+    /*props.setSession([...props.session,...randomTune.notes])
+    console.log(props.session);*/
+    let randomTuneName = randomTune.title;
+    props.setDisplayText(randomTuneName);
+    for (var index = 0; index < randomTune.notes.length; index++) {
+      let item = randomTune.notes[index];
+      setTimeout(() => { 
+        document.getElementById(item.toLowerCase()).play();
+        props.setCharKey(item.toLowerCase());
+        props.setPressed("enabled");
+        setTimeout(pause, 40 * index) 
+      function pause() {
+        document.getElementById(item.toLowerCase()).pause();
+        document.getElementById(item.toLowerCase()).currentTime = 0 ;
+      }
+        if (index === randomTune.notes.length) {
+          setTimeout(() => {
+            props.setCharKey("");
+            props.setPressed("disabled");
+            props.setDisplayText("");
+            props.setIsPlaying(false); 
+            console.log(props.isPlaying)
+          }, 500 * index);
+        }
+      }, 500 * index);
+    }
+
+
+  }
 
   return (
-    <button className="toolbar" onClick={playTune}>
-      <i className="fa fa-music" />
+    <button className="play-music toolbar" onClick={playTune}>
+      <i className="fa fa-music"/>
     </button>
-  );
-};
+  )
+}

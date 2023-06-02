@@ -28,8 +28,15 @@
     colorC: 'transparent',
     opacity: 'none',
     fontFamily: 'Abril Fatface',
-    fontSize: '2rem',
+    fontSize: '1.2rem',
     background: '#f3d6e0',
+    width: '300px',
+    boxShadow: '2px 3px 3px rgba(0,0,0,0.4)',
+    borderWidth: '2px 5px 0px',
+    borderStyle: 'solid',
+    borderColor: 'transparent rgba(0,0,0,0.1) transparent rgba(0,0,0,0.1)',
+    borderWidthSharp: '2px 3px 2px 0px',
+    boxShadowSharp: '0,0 1px 0px rgba(0,0,0,0.8),0 2px 2px rgba(0,0,0,0.4),0 -1px 0px #000',
   }
   
   export const drumMode = {
@@ -54,4 +61,6 @@
     fontFamily: 'Roboto Condensed',
     fontSize: '1.2rem',
     background: '#3b0f1e',
+    width: '200px',
+
   }

@@ -40,7 +40,7 @@ const App = () => {
     }
   }*/
 
-  const playNote = (playingMode, delay, item, index, musicSession, playNoteDocument) => {
+  /*const playNote = (playingMode, delay, item, index, musicSession, playNoteDocument) => {
     setTimeout(() => {
       if (playingMode === "drum") {
         playNoteDocument.getElementById(item.toUpperCase()).play();
@@ -70,10 +70,10 @@ const App = () => {
         }, delay * index);
       }
     }}, delay * index);
-  }
+  }*/
 
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (session.length > 0 && isPlaying) {
       let delay = 300;
       if (mode === "drum") {
@@ -85,17 +85,17 @@ const App = () => {
         let item = session[index];
         playNote(mode, delay, item, index, session, document)
         console.log(session)
-        /*pool
+        pool
           .exec(playNote, [mode, delay, item, index, session, document])
           .then(function (result) {
            console.log(result);
           })
           .catch(function (err) {
           console.error(err);
-        });*/
+        });
       }
     }
-  }, [session, isPlaying]);
+  }, [session, isPlaying]);*/
 
   return (
     <ThemeProvider
@@ -118,9 +118,6 @@ const App = () => {
       </div>
       <div
         onKeyDown={(e) => {
-          console.log("e", e.metaKey);
-          console.log("e", e.ctrlKey);
-          console.log("e", e.code);
           const item = elements.find((x) => x.key === e.key.toLowerCase());
           if (item) {
             if (mode === "drum") {

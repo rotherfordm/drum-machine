@@ -131,21 +131,21 @@ export const piano = [
   },
   {
     idPiano: "la",
-    colorString: "fuchsia",
+    colorString: "white",
     displayKeyText: '',
     keyChar: "X",
     audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/049.wav"
   },
   {
     idPiano: "la-sharp",
-    colorString: "fuchsia",
+    colorString: "black",
     displayKeyText: '',
     keyChar: "C",
     audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/050.wav"
   },
   {
     idPiano: "ti",
-    colorString: "fuchsia",
+    colorString: "grey",
     displayKeyText: '',
     keyChar: "V",
     audioSourcePiano: "http://carolinegabriel.com/demo/js-keyboard/sounds/051.wav"

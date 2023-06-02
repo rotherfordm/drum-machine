@@ -38,7 +38,7 @@ export const Key = (props) => {
   return (
     <button
       id={props.id}
-      className={`drum-pad piano ${props.charKey}-${props.colorString} ${props.pressed} ${props.keyChar}`}
+      className={`drum-pad piano ${props.charKey}-${props.colorString} ${props.pressed} ${props.keyChar} ${props.id}`}
       name={props.name}
       key={props.key}
       session={props.session}
