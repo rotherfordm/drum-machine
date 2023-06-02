@@ -41,9 +41,9 @@ export const DrumButtons = (props) => {
             props.setIsRecording(false);
             props.setDisplayText("");
             props.setIsPlaying(false);
-          }, 450 * index);
+          }, 300 * index);
         }
-      }, 450 * index);
+      }, 300 * index);
     }
     props.setSession([]);
   };
@@ -71,28 +71,29 @@ export const PianoButtons = (props) => {
     /*props.setSession([...props.session,...randomTune.notes])
     console.log(props.session);*/
     let randomTuneName = randomTune.title;
+    let randomTuneMusic = randomTune.notes
     props.setDisplayText(randomTuneName);
-    for (var index = 0; index < randomTune.notes.length; index++) {
-      let item = randomTune.notes[index];
+    for (var index = 0; index < randomTuneMusic.length; index++) {
+      let item = randomTuneMusic[index];
       setTimeout(() => { 
-        document.getElementById(item.toLowerCase()).play();
-        props.setCharKey(item.toLowerCase());
+        document.getElementById(item[0].toLowerCase()).play();
+        props.setCharKey(item[0].toLowerCase());
         props.setPressed("enabled");
-        setTimeout(pause, 40 * index) 
+        setTimeout(pause, 32 * index) 
       function pause() {
-        document.getElementById(item.toLowerCase()).pause();
-        document.getElementById(item.toLowerCase()).currentTime = 0 ;
+        document.getElementById(item[0].toLowerCase()).pause();
+        document.getElementById(item[0].toLowerCase()).currentTime = 0 ;
       }
-        if (index === randomTune.notes.length) {
+        if (index === randomTuneMusic.length) {
           setTimeout(() => {
             props.setCharKey("");
             props.setPressed("disabled");
             props.setDisplayText("");
             props.setIsPlaying(false); 
             console.log(props.isPlaying)
-          }, 500 * index);
+          }, 520 * index);
         }
-      }, 500 * index);
+      }, item[1] * index);
     }
 
 

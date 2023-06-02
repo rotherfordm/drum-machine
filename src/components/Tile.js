@@ -48,6 +48,10 @@ export const Key = (props) => {
         if (props.isRecording) {
           props.setSession([...props.session, props.keyChar]);
         }
+        setTimeout(() => {
+          document.querySelector("#" + props.keyChar.toLowerCase()).pause();
+          document.querySelector("#" + props.keyChar.toLowerCase()).currentTime = 0 ;
+        }, 400) 
       }}
     >
       <audio

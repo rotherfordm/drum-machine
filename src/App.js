@@ -137,9 +137,12 @@ const App = () => {
             }
           }
         }}
-        onKeyUp={() => {
+        onKeyUp={(e) => {
+          const item = elements
           setCharKey("");
-          setPressed("disabled");
+          setPressed("disabled")
+          document.querySelector("#" + item.key).pause();
+          document.querySelector("#" + item.key).currentTime = 0 ;;
         }}
       >
         <div id="drum-machine">
