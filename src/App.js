@@ -13,7 +13,7 @@ import {
   pianoMode,
 } from "./components/constants/theme";
 import { DrumButtons, PianoButtons } from "./components/Buttons";
-import WorkerPool  from "workerpool";
+import WorkerPool from "workerpool";
 
 const elements = Elements();
 const pool = WorkerPool.pool();
@@ -71,7 +71,6 @@ const App = () => {
       }
     }}, delay * index);
   }*/
-
 
   /*useEffect(() => {
     if (session.length > 0 && isPlaying) {
@@ -138,11 +137,15 @@ const App = () => {
           }
         }}
         onKeyUp={(e) => {
-          const item = elements
+          const item = elements;
           setCharKey("");
-          setPressed("disabled")
-          document.querySelector("#" + item.key).pause();
-          document.querySelector("#" + item.key).currentTime = 0 ;;
+          setPressed("disabled");
+          try {
+            document.querySelector("#" + item.key).pause();
+            document.querySelector("#" + item.key).currentTime = 0;
+          } catch (e) {
+            console.log(e);
+          }
         }}
       >
         <div id="drum-machine">
