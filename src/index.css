@@ -1,7 +1,7 @@
-html {
+/*html {
   --color-background: #111;
   --color-primary: #fff;
-}
+}*/
 
 
 .flex {
@@ -19,7 +19,7 @@ html {
   outline: none;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 1);
+  /*box-shadow: inset 0 0 5px rgba(0, 0, 0, 1);*/
 }
 
 
@@ -39,15 +39,7 @@ html {
   opacity: 80%;
 }
 
-.on-off,
-.record,
-.replay {
-  background: none;
-  color: var(--color-primary);
-  width: 30px !important;
-  height: 30px;
-  margin: 10px;
-}
+
 
 .drum-pad,
 .disabled {
@@ -109,9 +101,7 @@ html {
   margin-bottom: calc(var(--gap) * 4);
 }
 
-.toolbar {
-  width: 150px;
-}
+
 
 .do, 
 .re, 

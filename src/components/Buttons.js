@@ -79,7 +79,7 @@ export const PianoButtons = (props) => {
         document.getElementById(item[0].toLowerCase()).play();
         props.setCharKey(item[0].toLowerCase());
         props.setPressed("enabled");
-        setTimeout(pause, 32 * index) 
+        setTimeout(pause, 27 * index) 
       function pause() {
         document.getElementById(item[0].toLowerCase()).pause();
         document.getElementById(item[0].toLowerCase()).currentTime = 0 ;
@@ -91,12 +91,10 @@ export const PianoButtons = (props) => {
             props.setDisplayText("");
             props.setIsPlaying(false); 
             console.log(props.isPlaying)
-          }, 520 * index);
+          }, 550 * randomTuneMusic.length);
         }
       }, item[1] * index);
     }
-
-
   }
 
   return (

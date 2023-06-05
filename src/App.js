@@ -138,11 +138,13 @@ const App = () => {
           }
         }}
         onKeyUp={(e) => {
-          const item = elements
           setCharKey("");
           setPressed("disabled")
-          document.querySelector("#" + item.key).pause();
-          document.querySelector("#" + item.key).currentTime = 0 ;;
+          if (mode === "piano") {
+          setTimeout(() => {
+            document.querySelector("#" + e.key).pause()
+            document.querySelector("#" + e.key).currentTime = 0 
+          }, 250)}
         }}
       >
         <div id="drum-machine">
@@ -155,7 +157,7 @@ const App = () => {
           </span>
           {/* Display */}
           <div className="flex">
-            <div className="toolbar display" id="display">
+            <div className="display" id="display">
               {displayText}
             </div>
             {/* Buttons */}

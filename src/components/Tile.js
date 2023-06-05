@@ -51,7 +51,7 @@ export const Key = (props) => {
         setTimeout(() => {
           document.querySelector("#" + props.keyChar.toLowerCase()).pause();
           document.querySelector("#" + props.keyChar.toLowerCase()).currentTime = 0 ;
-        }, 400) 
+        }, 550) 
       }}
     >
       <audio

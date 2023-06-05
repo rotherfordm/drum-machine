@@ -28,7 +28,7 @@
     colorC: 'transparent',
     opacity: 'none',
     fontFamily: 'Abril Fatface',
-    fontSize: '1.2rem',
+    fontSize: '1.35rem',
     background: '#f3d6e0',
     width: '300px',
     boxShadow: '2px 3px 3px rgba(0,0,0,0.4)',
@@ -42,7 +42,7 @@
   export const drumMode = {
     body: '#111',
     text: '#fff',
-    toggleBorder: '#6B8096',
+    toggleBorder: '#111',
     gradient: 'linear-gradient(#091236, #1E215D)',
     top: '125px',
     colorQ: '#e44b50',

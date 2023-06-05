@@ -36,9 +36,9 @@ export const tunes = [
     ],
   },
   {
-    title: "Old MacDonald Had A Farm",
+    title: "Old McDonald Has A Farm",
     notes: [
-      ["s", 500],
+      ["s", 0],
       ["s", 500], 
       ["s", 500], 
       ["q", 500], 
@@ -68,6 +68,27 @@ export const tunes = [
       ["a", 592], 
       ["f", 592], 
       ["f", 592]
+    ],
+  },
+  {
+    title: "Merry Christmas",
+    notes: [
+      ["q", 0],
+      ["s", 500], 
+      ["s", 500], 
+      ["f", 438], 
+      ["s", 400], 
+      ["a", 375], 
+      ["e", 357], 
+      ["e", 375], 
+      ["e", 389], 
+      ["f", 400], 
+      ["f", 409], 
+      ["x", 395], 
+      ["f", 385],
+      ["s", 375],
+      ["a", 383],
+      ["q", 391],
     ],
   },
 ];

@@ -191,8 +191,18 @@ button:hover {
   width: 30px ;
   height: 30px;
   margin: 10px;
+  border: 2px solid outset;
+  border-color: ${({ theme }) => theme.toggleBorder};
 }
 
+
+.toolbar:hover {
+  opacity: 80%;
+}
+
+.toolbar:active {
+  border-style: inset;
+}
 `;
 
 
