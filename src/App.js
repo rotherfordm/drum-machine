@@ -13,7 +13,7 @@ import {
   pianoMode,
 } from "./components/constants/theme";
 import { DrumButtons, PianoButtons } from "./components/Buttons";
-import WorkerPool  from "workerpool";
+import WorkerPool from "workerpool";
 
 const elements = Elements();
 const pool = WorkerPool.pool();
@@ -71,7 +71,6 @@ const App = () => {
       }
     }}, delay * index);
   }*/
-
 
   /*useEffect(() => {
     if (session.length > 0 && isPlaying) {
@@ -138,12 +137,13 @@ const App = () => {
           }
         }}
         onKeyUp={(e) => {
+          const item = elements;
           setCharKey("");
-          setPressed("disabled")
+          setPressed("disabled");
           if (mode === "piano") {
           setTimeout(() => {
-            document.querySelector("#" + e.key).pause()
-            document.querySelector("#" + e.key).currentTime = 0 
+            document.querySelector("#" + e.key).pause();
+            document.querySelector("#" + e.key).currentTime = 0; 
           }, 250)}
         }}
       >
